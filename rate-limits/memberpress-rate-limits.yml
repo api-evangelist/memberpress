@@ -1,0 +1,24 @@
+generated: '2026-08-12'
+method: searched
+source: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+limit_count: 0
+limits: []
+response_headers: []
+status_on_exhaustion: null
+note: >-
+  MemberPress publishes no rate limits, and none were observable: the API runs inside the
+  customer's own WordPress installation, so there is no vendor-operated host to probe and no
+  vendor-enforced quota to document. Neither the Developer Tools documentation page nor the
+  MemberPress REST API documentation repository mentions throttling, quotas, 429 responses,
+  Retry-After, X-RateLimit-* or RateLimit-* headers. In practice the effective limit is whatever
+  the site owner's PHP-FPM workers, database and hosting WAF allow — which means it varies per
+  installation and cannot be discovered from MemberPress at all. An agent integrating with a
+  MemberPress site gets no runtime backpressure signal and must implement its own client-side
+  concurrency control and exponential backoff on 5xx.
+docs_checked:
+- url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  status: 200
+  result: no rate-limit content
+- url: https://github.com/caseproof/memberpress-rest-api-documentation
+  status: 200
+  result: no rate-limit content

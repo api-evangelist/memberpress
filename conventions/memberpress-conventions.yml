@@ -1,0 +1,118 @@
+generated: '2026-08-12'
+method: searched
+source: https://github.com/caseproof/memberpress-rest-api-documentation
+docs:
+- https://github.com/caseproof/memberpress-rest-api-documentation#pagination
+- https://github.com/caseproof/memberpress-rest-api-documentation#search-parameters
+- https://memberpress.com/docs/overview-of-using-the-developer-tools/
+- https://developer.wordpress.org/rest-api/
+summary: >-
+  MemberPress inherits WordPress REST API conventions and adds a MemberPress-specific search
+  syntax. It is a plain key-authenticated CRUD surface: no idempotency keys, no cursor pagination,
+  no field expansion, no request-id tracing, no rate-limit headers and no RFC 9457 problem
+  documents. Content negotiation is JSON only.
+authentication:
+  style: api-key-header
+  headers:
+  - MEMBERPRESS-API-KEY
+  - Authorization
+  bearer_prefix: false
+  detail: authentication/memberpress-authentication.yml
+versioning:
+  style: uri-namespace
+  current: mp/v1
+  location: https://{site}/wp-json/mp/v1
+  header_negotiation: false
+  note: >-
+    The version lives in the WordPress REST namespace. MemberPress has shipped only v1; there is
+    no published policy for how a v2 would be introduced or how long v1 would remain.
+  detail: lifecycle/memberpress-lifecycle.yml
+idempotency:
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  note: >-
+    MemberPress documents no idempotency key, no request-replay protection and no safe-retry
+    contract on any write operation. Retrying createTransaction, createSubscription or
+    refundTransaction after a timeout risks a duplicate financial record. This matters more here
+    than on a read-only API because the write surface is billing.
+pagination:
+  style: page-number
+  request_params:
+    page:
+      default: 1
+      description: Page number.
+    per_page:
+      default: 10
+      description: Items per page.
+  response_headers:
+  - name: X-WP-Total
+    description: Total number of items.
+  - name: X-WP-TotalPages
+    description: Total number of pages.
+  cursor: false
+  envelope: false
+  note: >-
+    List endpoints return a bare JSON array; the counts arrive in WordPress core's pagination
+    headers rather than in the body. No maximum per_page value is published.
+filtering_and_search:
+  style: bracketed-search-map
+  params:
+  - 'search — general search term'
+  - 'search[id]'
+  - 'search[email]'
+  - 'search[username]'
+  - 'search[status]'
+  - 'search[member]'
+  - 'search[membership]'
+  - 'search[subscription]'
+  - 'search[title]'
+  - 'search[event]'
+  note: Which search keys are honoured varies by resource; see the per-operation parameters in
+    openapi/memberpress-developer-tools-openapi.yml.
+sorting:
+  params:
+  - orderby
+  - order
+  allowed_values_published: false
+field_selection:
+  expansion: false
+  sparse_fieldsets: false
+  note: >-
+    No expand/include or fields parameter. Related records are fetched with a second call using
+    search[member] / search[membership]; the member object does embed an `active_memberships`
+    array, which MemberPress documents as the way to see a member's entitlements.
+metadata:
+  custom_fields: true
+  note: >-
+    MemberPress supports custom member fields and user meta; the documented route for writing
+    user meta through the API is covered at
+    https://memberpress.com/docs/how-to-add-usermeta-via-rest-api-developer-tools/
+request_tracing:
+  request_id_header: none
+  note: No correlation or request-id header is documented in either direction.
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  success_envelope: '{"success": true, "data": {...}}'
+  error_shape: '{"code": "...", "message": "...", "data": {"status": <int>}}'
+  content_type: application/json
+  detail: errors/memberpress-error-codes.yml
+rate_limit_signaling:
+  headers: none
+  status_on_exhaustion: null
+  detail: rate-limits/memberpress-rate-limits.yml
+  note: >-
+    None published. Because MemberPress runs on the customer's own server, any effective limit is
+    imposed by that host or its WAF, not by MemberPress.
+content_types:
+  request: application/json
+  response: application/json
+cross_links:
+  errors: errors/memberpress-error-codes.yml
+  lifecycle: lifecycle/memberpress-lifecycle.yml
+  authentication: authentication/memberpress-authentication.yml
+  rate_limits: rate-limits/memberpress-rate-limits.yml
+  webhooks: asyncapi/memberpress-webhooks.yml
+  data_model: data-model/memberpress-data-model.yml

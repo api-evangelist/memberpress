@@ -1,0 +1,90 @@
+generated: '2026-08-12'
+method: searched
+source: https://github.com/caseproof/memberpress-rest-api-documentation#webhook-integration
+docs:
+- https://github.com/caseproof/memberpress-rest-api-documentation#webhook-integration
+- https://memberpress.com/docs/overview-of-using-the-developer-tools/
+asyncapi_published: false
+asyncapi_note: >-
+  MemberPress publishes NO AsyncAPI document, and none was generated here — the event surface is
+  captured as a webhook catalog instead. Every event name below is quoted verbatim from
+  MemberPress's own documentation.
+delivery:
+  style: http-callback
+  subscription_model: api-managed
+  subscribe:
+    method: POST
+    path: /wp-json/mp/v1/webhooks/subscribe
+    parameters:
+      url: Callback URL that receives notifications (required)
+      event: Event type, or the literal value `all` for every event (required)
+  unsubscribe:
+    method: DELETE
+    path: /wp-json/mp/v1/webhooks/unsubscribe/{id}
+  ui_alternative: >-
+    Webhooks can also be configured, and test-fired, from the MemberPress > Developer screen in
+    WP Admin. MemberPress describes that screen as the authoritative, dynamic list of events for
+    a given installation and plugin version.
+  authentication:
+    header: memberpress-webhook-key
+    since: MemberPress 1.2.5
+    kind: shared-secret
+    signature: none
+    note: >-
+      A static shared secret, not an HMAC signature over the payload — a receiver can verify that
+      the caller holds the key but cannot verify body integrity or replay-protect a delivery.
+      Basic Authentication with the WordPress Application Passwords plugin is also documented,
+      and MemberPress itself labels it the less secure option.
+  retries: undocumented
+  ordering: undocumented
+  payload_schema: undocumented
+events:
+- name: transaction-completed
+  domain: transactions
+  description: A transaction completed.
+- name: transaction-refunded
+  domain: transactions
+  description: A transaction was refunded.
+- name: transaction-failed
+  domain: transactions
+  description: A transaction failed.
+- name: transaction-expired
+  domain: transactions
+  description: A transaction expired.
+- name: recurring-transaction-completed
+  domain: transactions
+  description: A recurring transaction completed.
+- name: recurring-transaction-failed
+  domain: transactions
+  description: A recurring transaction failed.
+- name: subscription-created
+  domain: subscriptions
+  description: A subscription was created.
+- name: subscription-paused
+  domain: subscriptions
+  description: A subscription was paused.
+- name: subscription-resumed
+  domain: subscriptions
+  description: A subscription was resumed.
+- name: subscription-stopped
+  domain: subscriptions
+  description: A subscription was stopped.
+- name: subscription-upgraded
+  domain: subscriptions
+  description: A subscription was upgraded.
+- name: subscription-downgraded
+  domain: subscriptions
+  description: A subscription was downgraded.
+- name: member-signup
+  domain: members
+  description: A member signed up.
+- name: member-account-updated
+  domain: members
+  description: A member account was updated.
+event_count: 14
+gaps:
+- No AsyncAPI or JSON Schema for any event payload — a subscriber cannot know the shape of a
+  delivery before receiving one.
+- No documented retry, backoff or dead-letter behaviour.
+- No per-payload signature; origin verification only, via a static header key.
+- No documented delivery ordering or idempotency key on the callback.

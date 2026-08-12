@@ -1,0 +1,78 @@
+generated: '2026-08-12'
+method: searched
+source: https://registry.npmjs.org/memberpress-sdk
+note: >-
+  Registries probed on 2026-08-12: npm, PyPI, RubyGems, Packagist, crates.io, NuGet, Maven
+  Central and pkg.go.dev, plus the caseproof GitHub organization. MemberPress ships exactly one
+  first-party client library, on npm. Everything else carrying the MemberPress name on Packagist
+  is third-party (payment-library drivers and plugin mirrors) and is recorded separately below.
+packages:
+- language: javascript
+  registry: npm
+  name: memberpress-sdk
+  url: https://www.npmjs.com/package/memberpress-sdk
+  install: npm install memberpress-sdk
+  official: true
+  version: 1.0.0
+  published: '2025-04-17'
+  license: MIT
+  source_code: https://github.com/caseproof/memberpress-sdk
+  npm_maintainer: memberpress <seth@caseproof.com>
+  covers: MemberPress Developer Tools REST API
+  note: >-
+    First-party: published by the `memberpress` npm account under a caseproof.com address, with
+    `author: MemberPress`, and mirrored as caseproof/memberpress-sdk in the MemberPress parent
+    company's GitHub organization. DECAY SIGNAL — still on its initial 1.0.0 release from
+    2025-04-17, with the source repository last pushed 2025-04-22. MemberPress core has shipped
+    eight dated releases since (1.12.9 through 1.12.17, the most recent 2026-08-04), including
+    the 1.12.16 breaking checkout-token change, so the SDK is roughly sixteen months behind the
+    product it wraps. The npm `repository` field also still points at a personal fork
+    (github.com/sethshoultes/memberpress-sdk) rather than the organization repo.
+third_party_packages:
+- language: php
+  registry: packagist
+  name: wp-pay-extensions/memberpress
+  url: https://packagist.org/packages/wp-pay-extensions/memberpress
+  official: false
+  version: null
+  published: null
+  note: >-
+    Pronamic's MemberPress driver for the WordPress Pay payment-processing library. Not published
+    by MemberPress/Caseproof; version deliberately not recorded because it measures a third
+    party's release cadence, not MemberPress's.
+- language: javascript
+  registry: npm
+  name: '@taskmagic/piece-memberpress'
+  url: https://www.npmjs.com/package/@taskmagic/piece-memberpress
+  official: false
+  version: 0.0.1
+  published: '2024-08-21'
+  note: Third-party automation connector, unaffiliated with MemberPress.
+not_found:
+- registry: pypi
+  query: memberpress
+  status: 404
+- registry: npm
+  query: '@memberpress/sdk'
+  status: 404
+- registry: rubygems
+  query: memberpress
+  result: no first-party package
+- registry: crates.io
+  query: memberpress
+  result: no first-party package
+distribution_note: >-
+  MemberPress itself is distributed as a licensed WordPress plugin ZIP through the customer's
+  MemberPress account, not through wordpress.org or any language package registry, so the plugin
+  has no registry metadata endpoint to date. Plugin release dates are tracked in
+  changelog/memberpress-changelog.yml instead.
+other_first_party_repos:
+- name: caseproof/memberpress-chrome-extension
+  url: https://github.com/caseproof/memberpress-chrome-extension
+  kind: browser-extension
+  registry: none
+  version: null
+  published: null
+  note: >-
+    First-party Chrome extension for managing members from the browser. Not distributed through a
+    package registry, so no version metadata endpoint exists to query.

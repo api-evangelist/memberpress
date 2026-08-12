@@ -1,0 +1,92 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/memberpress-developer-tools-openapi.yml + https://github.com/caseproof/memberpress-rest-api-documentation
+docs:
+- https://memberpress.com/docs/overview-of-using-the-developer-tools/
+- https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/
+format: wordpress-rest
+rfc9457: false
+content_type: application/json
+note: >-
+  MemberPress publishes NO error reference. It documents exactly one failure case — a 401 when
+  the caller lacks the `remove_users` capability — and one success envelope. Everything else
+  below is the WordPress REST API core envelope that MemberPress inherits by running inside the
+  WordPress REST namespace, cited to WordPress's own documentation and labelled as inherited
+  rather than MemberPress-published. No status code, code slug or message is invented.
+envelope:
+  success: '{"success": true, "data": {...}}'
+  error: '{"code": "<slug>", "message": "<human readable>", "data": {"status": <http status>}}'
+  fields:
+  - name: code
+    description: WordPress error-code slug identifying the failure class.
+  - name: message
+    description: Human-readable message. Not stable across versions; do not match on it.
+  - name: data.status
+    description: The HTTP status code, repeated inside the body.
+problem_types:
+- status: 401
+  code: null
+  title: Unauthorized
+  source: provider-documented
+  evidence: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  meaning: >-
+    The API key is missing or invalid, or the authenticated WordPress user does not hold the
+    `remove_users` capability.
+  remediation: >-
+    Send the Developer Tools key in MEMBERPRESS-API-KEY (or Authorization, without a `Bearer`
+    prefix). If authenticating as a WordPress user, grant `remove_users` — typically by using an
+    administrator account. Regenerate the key from MemberPress > Developer if it may have leaked.
+  retryable: false
+- status: 404
+  code: rest_no_route
+  title: No route matched
+  source: inherited-from-wordpress
+  evidence: https://developer.wordpress.org/rest-api/
+  meaning: >-
+    The route does not exist on this installation. On MemberPress this most often means the
+    Developer Tools add-on is not activated, or the endpoint is one of the four MemberPress
+    itself flags as absent from some installations.
+  remediation: >-
+    Confirm the Developer Tools add-on is active and the site's permalinks expose /wp-json/. For
+    /membership_options, /member_options, /me/permissions and
+    /memberships/{id}/member_options, use the alternatives MemberPress documents in the
+    "Missing Endpoints and Alternatives" section rather than treating the 404 as an outage.
+  retryable: false
+- status: 400
+  code: rest_missing_callback_param
+  title: Missing required parameter
+  source: inherited-from-wordpress
+  evidence: https://developer.wordpress.org/rest-api/
+  meaning: A required parameter was not supplied.
+  remediation: >-
+    Supply the required fields — email + username for createMember, title for
+    createMembership/createGroup/createRule, member + membership for
+    createTransaction/createSubscription, code for createCoupon, name for createReminder,
+    url + event for subscribeWebhook.
+  retryable: false
+- status: 403
+  code: rest_forbidden
+  title: Forbidden
+  source: inherited-from-wordpress
+  evidence: https://developer.wordpress.org/rest-api/
+  meaning: The request was authenticated but the capability check failed.
+  remediation: Use a credential attached to a user with the `remove_users` capability.
+  retryable: false
+- status: 500
+  code: null
+  title: Server error
+  source: inherited-from-wordpress
+  evidence: https://developer.wordpress.org/rest-api/
+  meaning: >-
+    A PHP or database failure inside the customer's own WordPress installation. Because
+    MemberPress is self-hosted, a 500 is the site owner's to diagnose — there is no vendor status
+    page and no vendor incident channel.
+  remediation: Inspect the site's PHP error log and WP_DEBUG output.
+  retryable: true
+gaps:
+- No published error-code registry, no stable machine-readable `code` values for MemberPress's
+  own failures, and no documented validation-error detail structure.
+- No RFC 9457 `application/problem+json` representation.
+- No documented rate-limit (429) or retry semantics.
+- Error responses are not modelled in any provider-published contract, because MemberPress
+  publishes no contract.

@@ -1,0 +1,212 @@
+generated: '2026-08-12'
+method: searched
+source: https://github.com/caseproof/memberpress-rest-api-documentation#data-modeling-and-relationships
+note: >-
+  MemberPress publishes an explicit "Data Modeling and Relationships" section; the four
+  relationship statements below are taken from it verbatim in substance. Entity fields are taken
+  from the documented create/update parameter lists. Identifiers are WordPress post/user IDs —
+  plain integers, with no type prefixes.
+id_scheme:
+  style: integer
+  prefixes: false
+  note: >-
+    Every resource is keyed by a WordPress integer ID (members are WP users; memberships, groups,
+    rules, coupons and reminders are WP custom post types). There is no opaque or prefixed
+    identifier, so an ID alone does not tell an agent which resource it belongs to.
+entities:
+- name: Member
+  rest_collection: /members
+  description: A MemberPress member, backed by a WordPress user.
+  key_fields:
+  - email
+  - username
+  - first_name
+  - last_name
+  - address1
+  - address2
+  - city
+  - state
+  - zip
+  - country
+  - phone
+  - active_memberships
+  relationships:
+  - kind: has_many
+    target: Transaction
+    via: transactions.member
+  - kind: has_many
+    target: Subscription
+    via: subscriptions.member
+  - kind: has_many
+    target: Membership
+    via: member.active_memberships
+    note: Entitlements are embedded on the member object as `active_memberships`.
+- name: Membership
+  rest_collection: /memberships
+  description: The product a member buys. A WordPress custom post type.
+  key_fields:
+  - title
+  - price
+  - period
+  - period_type
+  - trial
+  - trial_days
+  - trial_amount
+  - limit_cycles
+  - group_id
+  relationships:
+  - kind: belongs_to
+    target: Group
+    via: memberships.group_id
+  - kind: has_many
+    target: Transaction
+    via: transactions.membership
+  - kind: has_many
+    target: Subscription
+    via: subscriptions.membership
+  - kind: has_many
+    target: Rule
+    via: rules.memberships[]
+- name: Transaction
+  rest_collection: /transactions
+  description: A payment record. Always linked to exactly one member and one membership.
+  key_fields:
+  - member
+  - membership
+  - amount
+  - tax_amount
+  - tax_rate
+  - status
+  - gateway
+  - subscription
+  - created_at
+  - expires_at
+  relationships:
+  - kind: belongs_to
+    target: Member
+    via: transactions.member
+  - kind: belongs_to
+    target: Membership
+    via: transactions.membership
+  - kind: belongs_to
+    target: Subscription
+    via: transactions.subscription
+    optional: true
+    note: Present only when the transaction is a recurring payment.
+- name: Subscription
+  rest_collection: /subscriptions
+  description: A recurring billing agreement.
+  key_fields:
+  - member
+  - membership
+  - status
+  - period
+  - period_type
+  - limit_cycles
+  - limit_cycles_num
+  - gateway
+  - trial
+  - trial_days
+  relationships:
+  - kind: belongs_to
+    target: Member
+    via: subscriptions.member
+  - kind: belongs_to
+    target: Membership
+    via: subscriptions.membership
+  - kind: has_many
+    target: Transaction
+    via: transactions.subscription
+- name: Group
+  rest_collection: /groups
+  description: A set of memberships presented together as a pricing page or upgrade path.
+  key_fields:
+  - title
+  - pricing_page_disabled
+  - group_theme
+  - is_upgrade_path
+  - upgrade_path_text
+  - pricing_display
+  - page_id
+  - url
+  relationships:
+  - kind: has_many
+    target: Membership
+    via: memberships.group_id
+- name: Rule
+  rest_collection: /rules
+  description: A Smart Rule that protects content and controls dripping and expiration.
+  key_fields:
+  - title
+  - rule_type
+  - content_type
+  - content_id
+  - drip_enabled
+  - expires_enabled
+  - unauth_message
+  - memberships
+  relationships:
+  - kind: has_many
+    target: Membership
+    via: rules.memberships[]
+    note: Many-to-many — the rule names the membership IDs granted access.
+- name: Coupon
+  rest_collection: /coupons
+  description: A discount code applied at checkout.
+  key_fields:
+  - code
+  - discount_type
+  - discount_amount
+  - valid_date
+  - expiration_date
+  - usage_amount
+  - trial
+  - should_apply_tax
+  - memberships
+  relationships:
+  - kind: has_many
+    target: Membership
+    via: coupons.memberships[]
+- name: Reminder
+  rest_collection: /reminders
+  description: A scheduled member email triggered relative to an event.
+  key_fields:
+  - name
+  - event
+  - trigger_length
+  - trigger_interval
+  - trigger_timing
+  - enabled
+  - subject
+  - body
+  - memberships
+  relationships:
+  - kind: has_many
+    target: Membership
+    via: reminders.memberships[]
+- name: Event
+  rest_collection: /events
+  description: >-
+    The MemberPress event log. The same event vocabulary drives webhook subscriptions — see
+    asyncapi/memberpress-webhooks.yml for the fourteen published event names.
+  key_fields:
+  - event
+  relationships:
+  - kind: references
+    target: Member
+    via: search[event]
+    note: >-
+      The relationship between an event row and the member or transaction it concerns is not
+      documented in the API reference.
+traversal_notes:
+- >-
+  There is no expand/include parameter. Traversing from a member to their transactions requires a
+  second call — GET /transactions?search[member]={id} — and likewise for subscriptions.
+- >-
+  MemberPress documents no endpoint that lists the members of a membership. The documented route
+  is to search transactions by membership, or to inspect `active_memberships` on member objects.
+gaps:
+- No response schemas are published, so field types and nullability are unverified.
+- Enum values for `status`, `gateway`, `rule_type`, `content_type`, `discount_type`,
+  `period_type` and `trigger_interval` are named as parameters but their allowed values are not
+  enumerated anywhere in MemberPress documentation.

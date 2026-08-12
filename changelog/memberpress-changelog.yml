@@ -1,0 +1,76 @@
+generated: '2026-08-12'
+method: searched
+source: https://memberpress.com/changelog/
+url: https://memberpress.com/changelog/
+scheme: semver-ish
+dated: true
+breaking_changes_flagged: true
+scope: >-
+  The changelog covers the MemberPress WordPress plugin as a whole, not the REST API in
+  isolation. There is no API-specific changelog, so an integrator must read plugin release notes
+  to learn that an API-affecting change shipped.
+current_version: 1.12.17
+current_release_date: '2026-08-04'
+categories:
+- Added
+- Changed
+- Updated
+- Fixed
+entries:
+- version: 1.12.17
+  date: '2026-08-04'
+  breaking: false
+  highlights:
+  - Fixed missing alt text and PHP opcode issues
+  - Security hardening
+  - Payment gateway bug fixes
+- version: 1.12.16
+  date: '2026-07-14'
+  breaking: true
+  highlights:
+  - Added Full Site Editing template support
+  - Added Stripe Pay by Bank
+  - 'BREAKING CHANGE: checkout now requires a new checkout token field'
+- version: 1.12.15
+  date: '2026-04-07'
+  breaking: false
+  highlights:
+  - Apple Pay MPAN support
+  - Modern pricing tables
+  - PayPal Complete Payments gateway
+- version: 1.12.14
+  date: '2026-02-26'
+  breaking: false
+  highlights:
+  - Fixed onboarding emails
+  - Fixed static file protection
+- version: 1.12.12
+  date: '2026-02-25'
+  breaking: false
+  highlights:
+  - Added dashboard page and setup checklist
+  - Improved refund tracking
+  - Per-membership coupon discounts
+- version: 1.12.11
+  date: '2025-12-16'
+  breaking: false
+  highlights:
+  - Custom code snippets
+  - Transaction date filters
+  - Address field options
+- version: 1.12.10
+  date: '2025-10-27'
+  breaking: false
+  highlights:
+  - Fixed coupon application at checkout
+- version: 1.12.9
+  date: '2025-10-23'
+  breaking: false
+  highlights:
+  - Fixed Stripe Link escaping
+  - Fixed user role sanitization
+window: 2025-10-23 to 2026-08-04 (eight most recent releases as listed on 2026-08-12)
+gaps:
+- No RSS/Atom or JSON feed for the changelog, so releases cannot be watched programmatically.
+- Breaking changes are flagged in prose, not in a machine-readable field.
+- No mapping from a plugin release to the API operations it changes.

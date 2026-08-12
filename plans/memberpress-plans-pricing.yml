@@ -1,0 +1,91 @@
+generated: '2026-08-12'
+method: searched
+source: https://memberpress.com/pricing/
+currency: USD
+billing_period: annual
+plan_count: 3
+pricing_model: license
+note: >-
+  MemberPress sells an annual WordPress plugin licence, not metered API access. The REST API and
+  webhooks are NOT available on every tier — MemberPress lists "REST API / webhooks" and Zapier
+  as Scale-plan features, while the AI Foundation MCP add-on is stated in MemberPress's own
+  announcement to be available on all three plans. Prices below were the promotional prices shown
+  on the pricing page on 2026-08-12, with MemberPress's own stated list price recorded alongside.
+  No usage quota, overage rate or API call allowance is published, because none exists — the API
+  runs on the customer's own server.
+guarantee:
+  days: 14
+  terms: '100% No-Risk Guarantee — full refund within 14 days.'
+plans:
+- name: Launch
+  price: 199.50
+  list_price: 399.00
+  currency: USD
+  period: year
+  api_access: false
+  mcp_access: true
+  included:
+  - ReadyLaunch
+  - AI Course Generator with 25,000 AI Credits
+  - Unlimited courses and lessons
+  - Drag-and-drop course builder
+  - Unlimited members
+  - Stripe payments
+  - MailChimp integration
+  - Smart Rules content protection
+  - Standard support
+  quota:
+    ai_credits: 25000
+  overage: not published
+- name: Growth
+  price: 349.50
+  list_price: 699.00
+  currency: USD
+  period: year
+  api_access: false
+  mcp_access: true
+  most_popular: true
+  included:
+  - Everything in Launch
+  - 0% transaction fees
+  - 50,000 AI Credits
+  - ClubSuite (forums, member directory)
+  - CoachKit coaching platform
+  - Unlimited quizzes and assignments
+  - Course completion certificates
+  - Content dripping
+  - PayPal and Square payments
+  - Advanced marketing integrations
+  - Priority support
+  quota:
+    ai_credits: 50000
+  overage: not published
+- name: Scale
+  price: 499.50
+  list_price: 999.00
+  currency: USD
+  period: year
+  api_access: true
+  mcp_access: true
+  included:
+  - Everything in Growth
+  - REST API and webhooks
+  - Zapier integration
+  - 100,000 AI Credits
+  - ClubConnect direct messaging
+  - Easy Affiliate platform
+  - Quiz and Assignment Gradebook
+  - Corporate accounts
+  - Gifting
+  - Order bumps
+  - Amazon S3 integration
+  - Authorize.net payments
+  - File download management
+  - VIP support
+  quota:
+    ai_credits: 100000
+  overage: not published
+api_access_note: >-
+  The Developer Tools add-on that exposes /wp-json/mp/v1 is gated to the Scale tier. An
+  integrator evaluating MemberPress as an API should read that as the real entry price for API
+  access: 499.50 USD per year promotional, 999.00 USD list.

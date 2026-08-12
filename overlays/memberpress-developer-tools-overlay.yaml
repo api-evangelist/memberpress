@@ -1,0 +1,88 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the MemberPress Developer Tools REST API
+  version: 1.0.0
+  x-provenance:
+    generated: '2026-08-12'
+    method: generated
+    source: >-
+      API Evangelist enrichment pipeline. Extends
+      openapi/memberpress-developer-tools-openapi.yml with runtime-semantics annotations derived
+      from conventions/, errors/, rate-limits/, lifecycle/ and asyncapi/ in this repo. Applying
+      this overlay never mutates the base document.
+extends: ../openapi/memberpress-developer-tools-openapi.yml
+actions:
+- target: $.info
+  description: Record the runtime-semantics gaps an agent must compensate for.
+  update:
+    x-agent-notes:
+      idempotency: >-
+        NOT SUPPORTED. No idempotency key exists on any write operation. Do not blind-retry
+        createTransaction, createSubscription, refundTransaction or
+        refundTransactionAndCancelSubscription — a timeout may still have committed. Reconcile by
+        listing with search[member] before retrying.
+      rate_limits: >-
+        None published and none observable; the API runs on the customer's own server. Apply
+        client-side concurrency limits and exponential backoff on 5xx. There is no Retry-After.
+      auth_header: >-
+        Send the key as MEMBERPRESS-API-KEY, or as a BARE value in Authorization. Never prefix
+        it with "Bearer".
+      availability: >-
+        Four endpoints are documented by MemberPress as absent from some installations. Treat a
+        404 on /me/permissions, /member_options, /membership_options and
+        /memberships/{id}/member_options as expected, not as an outage.
+      status_signal: >-
+        No vendor status page exists. Availability is the site owner's responsibility.
+- target: $.paths['/members'].get
+  description: Document the pagination contract observed on every list operation.
+  update:
+    x-pagination:
+      style: page-number
+      params:
+      - page
+      - per_page
+      response_headers:
+      - X-WP-Total
+      - X-WP-TotalPages
+      max_per_page: not published
+- target: $.paths['/transactions'].post
+  description: Flag the financial write path that has no replay protection.
+  update:
+    x-agentic-access:
+      action_class: write
+      consequence: financial
+      escalation: human-approval-recommended
+      idempotent: false
+- target: $.paths['/transactions/{id}/refund'].post
+  description: Flag the refund path as irreversible.
+  update:
+    x-agentic-access:
+      action_class: write
+      consequence: financial-irreversible
+      escalation: human-approval-required
+      idempotent: false
+- target: $.paths['/transactions/{id}/refund_and_cancel'].post
+  description: Flag the compound refund-and-cancel path as irreversible.
+  update:
+    x-agentic-access:
+      action_class: write
+      consequence: financial-irreversible
+      escalation: human-approval-required
+      idempotent: false
+- target: $.paths['/members/{id}'].delete
+  description: Flag member deletion, which MemberPress itself marks destructive.
+  update:
+    x-agentic-access:
+      action_class: delete
+      consequence: destructive
+      escalation: human-approval-required
+      provider_warning: 'MemberPress documentation: "Deletes a member. USE WITH CAUTION!"'
+- target: $.paths['/webhooks/subscribe'].post
+  description: Record the delivery-security posture a subscriber inherits.
+  update:
+    x-webhook-security:
+      header: memberpress-webhook-key
+      kind: shared-secret
+      payload_signature: false
+      payload_schema_published: false
+      event_catalog: ../asyncapi/memberpress-webhooks.yml

@@ -1,0 +1,95 @@
+generated: '2026-08-12'
+method: derived
+source: mcp/memberpress-mcp.yml + openapi/memberpress-developer-tools-openapi.yml
+confidence_note: >-
+  MemberPress publishes only THREE of its 41 MCP tool names. This crosswalk therefore binds the
+  three named tools and records the remaining 38 as unmapped rather than guessing names. No tool
+  name below is invented; the `mcp_unmapped` block states the gap explicitly instead of filling
+  it. Every confidence value is set honestly against that constraint.
+surfaces:
+  openapi:
+    file: openapi/memberpress-developer-tools-openapi.yml
+    operations: 53
+    gated: false
+    note: Derived from MemberPress documentation; the API itself runs on the customer's site.
+  graphql:
+    endpoint: null
+    note: MemberPress publishes no GraphQL surface.
+  mcp:
+    url: null
+    gated: true
+    note: >-
+      Self-hosted per customer installation; tools/list requires an authenticated WordPress site,
+      so tool input schemas could not be introspected.
+crosswalk:
+- tool: get_member_billing_history
+  category: members
+  rest:
+  - listTransactions
+  - listSubscriptions
+  binding: composite
+  confidence: medium
+  note: >-
+    A member's billing history is assembled from GET /transactions?search[member]={id} and
+    GET /subscriptions?search[member]={id}. No single REST operation returns a billing history,
+    so this is an MCP-side composition over two documented list operations.
+- tool: get_course_completion_rates
+  category: reporting
+  rest: []
+  binding: none
+  confidence: low
+  note: >-
+    Courses is a separate MemberPress add-on. The Developer Tools REST API documented by
+    MemberPress exposes no course, lesson, quiz or progress resource, so this tool has no public
+    REST equivalent.
+- tool: get_churn_predictions
+  category: reporting
+  rest: []
+  binding: none
+  confidence: low
+  note: >-
+    A derived analytic. No REST operation returns churn, cohort, LTV or renewal-forecast data;
+    the REST surface is transactional CRUD only.
+mcp_only:
+- tool: get_course_completion_rates
+  reason: Courses add-on data has no documented REST resource.
+- tool: get_churn_predictions
+  reason: Predictive analytics computed inside the add-on; no REST equivalent.
+- tool: '<reporting tools, unnamed>'
+  reason: >-
+    MemberPress states the tool set covers revenue, churn, cohort analysis, lifetime value,
+    renewal forecasts and engagement. None of these have a REST counterpart — the reporting
+    surface exists ONLY over MCP. This is the single most significant divergence between the two
+    projections of MemberPress data.
+mcp_unmapped:
+  count: 38
+  reason: >-
+    MemberPress publishes a tool COUNT (41) but not a tool LIST. 38 tools are known to exist and
+    are deliberately left unnamed here rather than reconstructed from the REST surface.
+rest_only:
+- reason: >-
+    The REST API supports write and destructive operations that MemberPress does not describe as
+    available over MCP, and MCP write actions are gated behind explicit human approval.
+  operations:
+  - deleteMember
+  - deleteMembership
+  - deleteTransaction
+  - deleteSubscription
+  - deleteGroup
+  - deleteRule
+  - deleteCoupon
+  - deleteReminder
+  - subscribeWebhook
+  - unsubscribeWebhook
+  - createRule
+  - updateRule
+  - createReminder
+  - updateReminder
+coverage:
+  openapi_operations: 53
+  mcp_tools_declared: 41
+  mcp_tools_named_by_provider: 3
+  mapped: 1
+  mcp_only_named: 2
+  mcp_unmapped: 38
+  rest_only_listed: 14

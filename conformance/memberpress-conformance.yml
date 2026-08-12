@@ -1,0 +1,95 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/memberpress-developer-tools-openapi.yml + conventions/memberpress-conventions.yml
+docs_checked:
+- url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  status: 200
+- url: https://github.com/caseproof/memberpress-rest-api-documentation
+  status: 200
+- url: https://memberpress.com/security/
+  status: 404
+- url: https://memberpress.com/.well-known/security.txt
+  status: 404
+- url: https://memberpress.com/gdpr/
+  status: 404
+note: >-
+  No compliance certification, audit report or trust centre was found on any MemberPress surface
+  probed on 2026-08-12, so no `Compliance` or `TrustCenter` pointer is emitted. This is a
+  meaningful finding rather than an oversight: MemberPress moves card payments through Stripe,
+  PayPal, Square and Authorize.net, and PCI scope in that model sits with the gateway and the
+  site owner, not with the plugin vendor — but the plugin also stores member PII and billing
+  history in the site owner's own database, which makes the absence of a published security or
+  data-handling posture material to a buyer.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: No OAuth 2.0 authorization server, no /.well-known/oauth-authorization-server (404).
+    Authentication is a static API key header.
+- id: oidc
+  conforms: false
+  evidence: No /.well-known/openid-configuration (404).
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    Errors use the WordPress REST envelope {code, message, data.status}; no
+    application/problem+json.
+- id: rfc9116
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on memberpress.com.
+- id: rfc8594
+  conforms: false
+  evidence: No Sunset or Deprecation headers, and no deprecation policy published.
+- id: rfc8615
+  conforms: false
+  evidence: No /.well-known/ documents served at all — seven paths probed, all 404.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No idempotency key on any write operation, including createTransaction, createSubscription
+    and refundTransaction.
+- id: pagination
+  conforms: true
+  evidence: >-
+    Page-number pagination via page/per_page, with WordPress core's X-WP-Total and
+    X-WP-TotalPages response headers documented.
+- id: json:api
+  conforms: false
+  evidence: Plain JSON arrays and objects; no JSON:API media type or document structure.
+- id: odata
+  conforms: false
+  evidence: No OData query surface.
+- id: scim
+  conforms: false
+  evidence: >-
+    MemberPress manages users but exposes no SCIM 2.0 endpoints — /members is a bespoke shape.
+- id: openapi
+  conforms: false
+  evidence: >-
+    MemberPress publishes no OpenAPI description. The openapi/ file in this repo is an API
+    Evangelist derivation and is labelled as such in its info.x-provenance block.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    Fourteen webhook events are documented but no AsyncAPI document and no event payload schema
+    is published.
+- id: wordpress-rest-api
+  conforms: true
+  evidence: >-
+    The API is registered as a WordPress REST namespace (mp/v1) under /wp-json and inherits
+    WordPress core routing, error envelope and pagination headers.
+- id: mcp
+  conforms: partial
+  evidence: >-
+    MemberPress ships an MCP server via the AI Foundation add-on and states 41 tools, but
+    publishes no endpoint path, transport, protocol version or tools/list manifest, so
+    conformance cannot be verified. See mcp/memberpress-mcp.yml.
+- id: pci-dss
+  conforms: unknown
+  evidence: >-
+    No certification claim published. Card data is handled by the connected gateway (Stripe,
+    PayPal, Square, Authorize.net), not by MemberPress directly.
+- id: gdpr
+  conforms: unknown
+  evidence: >-
+    No dedicated GDPR or DPA page found (/gdpr/ 404). A privacy policy is published at
+    https://memberpress.com/privacy/.

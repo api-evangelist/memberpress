@@ -1,27 +1,189 @@
 aid: memberpress
 name: MemberPress
-description: 'MemberPress is a company surfaced via the API Evangelist harvest backlog (source: marketing-integration-graph)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'MemberPress is a WordPress membership, course and subscription-commerce plugin built
+  by Caseproof. It turns a self-hosted WordPress site into a paid membership business — content
+  protection through Smart Rules, memberships and groups as products, coupons, transactions,
+  recurring subscriptions across Stripe, PayPal, Square and Authorize.net, courses and quizzes,
+  ClubSuite communities and CoachKit coaching. Its developer surface is the Developer Tools add-on,
+  which exposes a REST API under the WordPress namespace /wp-json/mp/v1 on the site owner''s own
+  installation, plus a webhook subscription surface for fourteen membership and billing events. The
+  AI Foundation add-on ships a WordPress MCP server that lets Claude, Cursor and VS Code read and
+  act on membership data directly.'
+image: https://memberpress.com/wp-content/uploads/2022/10/mp-icon-RGB_Icon-01.jpg
 url: https://raw.githubusercontent.com/api-evangelist/memberpress/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:marketing-integration-graph
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment
 specificationVersion: '0.20'
 created: '2026-08-12'
 modified: '2026-08-12'
 tags:
 - Company
-apis: []
+- Membership
+- Subscriptions
+- WordPress
+- Payments
+- E-Commerce
+- Courses
+- Content Management
+- Webhooks
+- MCP
+apis:
+- aid: memberpress:developer-tools-rest-api
+  name: MemberPress Developer Tools REST API
+  description: 'REST API exposed by the MemberPress Developer Tools add-on on the site owner''s own
+    WordPress installation, under the WordPress REST namespace mp/v1. Covers members, memberships,
+    transactions, subscriptions, groups, rules, coupons, reminders and the event log, plus webhook
+    subscribe/unsubscribe. Authenticated with a Developer Tools API key sent in the
+    MEMBERPRESS-API-KEY header (the documentation repository and Postman collection send the same
+    key in the Authorization header), or as a logged-in WordPress user holding the remove_users
+    capability. MemberPress is self-hosted, so the base URL is always the customer''s own site.'
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Members
+  - Memberships
+  - Subscriptions
+  - Transactions
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-developer-tools-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: Overlay
+    url: overlays/memberpress-developer-tools-overlay.yaml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+  x-evidence:
+    verified: '2026-08-12'
+    method: docs+postman
+    openapi_published_by_provider: false
+    note: MemberPress publishes no OpenAPI. The openapi/ file is an API Evangelist derivation of
+      MemberPress's own README, Postman collection and Developer Tools documentation; the Postman
+      collection under postman/ is the provider-published artifact, saved verbatim.
+    endpoints_checked: MemberPress is self-hosted — there is no vendor-operated host to call
+      anonymously, so no live endpoint probe is possible without a customer installation.
+- aid: memberpress:ai-foundation-mcp
+  name: MemberPress AI Foundation MCP Server
+  description: 'WordPress MCP server shipped by the MemberPress AI Foundation add-on. It exposes
+    membership, subscription, transaction, coupon, access-rule and reporting tools — MemberPress
+    states 41 tools on a standard install, with more added by the Courses, Corporate Accounts,
+    Downloads and Gifting add-ons — to MCP clients such as Claude Desktop, Claude Code, Cursor, VS
+    Code and Windsurf. The server runs inside the customer''s own WordPress site, so there is no
+    vendor-hosted remote MCP endpoint to introspect anonymously.'
+  humanURL: https://memberpress.com/blog/ai-foundation/
+  baseURL: https://{site}/wp-json
+  tags:
+  - MCP
+  - AI
+  - Reporting
+  properties:
+  - type: MCPServer
+    url: mcp/memberpress-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/memberpress-tool-crosswalk.yml
+  - type: Documentation
+    url: https://memberpress.com/blog/ai-foundation/
+  x-evidence:
+    verified: '2026-08-12'
+    method: docs
+    note: Tool count and three named tools (get_course_completion_rates, get_member_billing_history,
+      get_churn_predictions) are quoted from MemberPress's own announcement. The full tools/list
+      manifest requires an authenticated customer installation; it was not introspected.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/memberpress-domain-security.yml
 - type: Website
   url: https://memberpress.com/
+- type: DeveloperPortal
+  url: https://memberpress.com/addons/developer-tools/
+- type: Documentation
+  url: https://memberpress.com/docs/
+- type: APIReference
+  url: https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+- type: GettingStarted
+  url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+- type: Support
+  url: https://memberpress.com/support/
+- type: Blog
+  url: https://memberpress.com/blog/
+- type: BlogRSS
+  url: https://memberpress.com/blog/feed/
+- type: GitHubOrganization
+  url: https://github.com/caseproof
+- type: Pricing
+  url: https://memberpress.com/pricing/
+- type: SignUp
+  url: https://memberpress.com/pricing/
+- type: Login
+  url: https://memberpress.com/login/
+- type: TermsOfService
+  url: https://memberpress.com/terms/
+- type: PrivacyPolicy
+  url: https://memberpress.com/privacy/
+- type: ChangeLog
+  url: https://memberpress.com/changelog/
+- type: Postman
+  url: postman/memberpress-api-postman-collection.json
+- type: Packages
+  url: packages/memberpress-packages.yml
+- type: SDKs
+  url: packages/memberpress-packages.yml
+- type: LLMsTxt
+  url: llms/memberpress-llms.txt
+- type: MCPServer
+  url: mcp/memberpress-mcp.yml
+- type: Webhooks
+  url: asyncapi/memberpress-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/memberpress-authentication.yml
+- type: ErrorCatalog
+  url: errors/memberpress-error-codes.yml
+- type: Conventions
+  url: conventions/memberpress-conventions.yml
+- type: Lifecycle
+  url: lifecycle/memberpress-lifecycle.yml
+- type: Conformance
+  url: conformance/memberpress-conformance.yml
+- type: DataModel
+  url: data-model/memberpress-data-model.yml
+- type: Plans
+  url: plans/memberpress-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/memberpress-rate-limits.yml
+- type: ChangeLog
+  url: changelog/memberpress-changelog.yml
 x-vouched-by:
 - Drip
 - MailerLite
 x-vouch-count: 2
+x-enrichment:
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1

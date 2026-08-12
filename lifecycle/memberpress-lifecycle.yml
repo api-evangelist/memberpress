@@ -1,0 +1,67 @@
+generated: '2026-08-12'
+method: searched
+source: https://memberpress.com/changelog/
+versioning:
+  api_version: v1
+  scheme: uri-namespace
+  location: /wp-json/mp/v1
+  policy_published: false
+  note: >-
+    The API namespace is mp/v1 and has never moved. MemberPress publishes no API versioning
+    policy: nothing states how a v2 would be introduced, how long v1 would be supported, or
+    whether the namespace tracks the plugin version. In practice the API's behaviour tracks the
+    PLUGIN release the site owner has installed, so two MemberPress sites can expose materially
+    different mp/v1 surfaces at the same moment — MemberPress itself says the authoritative
+    endpoint and event list is the one rendered in that site's own Developer screen.
+product_versioning:
+  scheme: semver-ish
+  current: 1.12.17
+  released: '2026-08-04'
+  changelog: https://memberpress.com/changelog/
+  detail: changelog/memberpress-changelog.yml
+  breaking_changes_flagged: true
+  breaking_change_example:
+    version: 1.12.16
+    date: '2026-07-14'
+    note: MemberPress flagged a BREAKING CHANGE requiring a new checkout token field.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation headers, and no deprecation notices in
+    the API documentation. MemberPress does deprecate and retire integrations at the product
+    level — the changelog and blog record the PayPal legacy-gateway wind-down and several
+    archived add-on repositories — but none of that is expressed on the API surface.
+status_page:
+  published: false
+  probed:
+  - url: https://status.memberpress.com/
+    status: 000
+    note: Host does not resolve.
+  note: >-
+    MemberPress operates no status page, which is coherent with the product being self-hosted —
+    there is no vendor-run runtime whose availability could be reported. The consequence for an
+    integrator is that there is no upstream signal at all: an outage is always the site owner's,
+    and must be detected by the integrator's own monitoring.
+sla:
+  published: false
+  support_tiers:
+  - name: Standard support
+    plan: Launch
+  - name: Priority support
+    plan: Growth
+  - name: VIP support
+    plan: Scale
+  note: Support tiers are named on the pricing page; no response-time or uptime commitment is
+    published for any of them.
+support:
+  url: https://memberpress.com/support/
+  docs: https://memberpress.com/docs/
+roadmap:
+  published: false
+  probed:
+  - url: https://memberpress.com/roadmap/
+    status: 404

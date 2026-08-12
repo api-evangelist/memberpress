@@ -1,0 +1,57 @@
+generated: '2026-08-12'
+method: generated
+source: openapi/memberpress-developer-tools-openapi.yml + conventions/memberpress-conventions.yml
+note: >-
+  MemberPress publishes no skills, AGENTS.md or agent instructions of its own — searched on
+  2026-08-12 across memberpress.com, memberpress.com/docs and the caseproof GitHub organization.
+  These three skills are API Evangelist packagings of MemberPress's marquee flows. Every
+  operationId referenced below exists in openapi/memberpress-developer-tools-openapi.yml, which
+  is itself derived from MemberPress's own README, Postman collection and Developer Tools
+  documentation. No operation is invented.
+api: memberpress:developer-tools-rest-api
+skills:
+- name: memberpress-onboard-member
+  file: memberpress-onboard-member.md
+  description: Create a member and grant a membership by recording the entitling transaction,
+    then verify the entitlement.
+  operations:
+  - verifyAuthentication
+  - listMemberships
+  - listMembers
+  - createMember
+  - createTransaction
+  - getMember
+- name: memberpress-cancel-and-refund
+  file: memberpress-cancel-and-refund.md
+  description: Handle a cancellation or refund safely on an API with no idempotency keys and no
+    documented undo.
+  operations:
+  - listMembers
+  - listSubscriptions
+  - listTransactions
+  - cancelSubscription
+  - suspendSubscription
+  - resumeSubscription
+  - refundTransaction
+  - refundTransactionAndCancelSubscription
+  - getSubscription
+- name: memberpress-protect-content
+  file: memberpress-protect-content.md
+  description: Paywall content by binding a membership to a Smart Rule, with optional dripping
+    and expiration.
+  operations:
+  - listMemberships
+  - createMembership
+  - listRules
+  - createRule
+  - updateRule
+  - getRule
+  - createGroup
+  - createCoupon
+shared_rules:
+  base_url: https://{site}/wp-json/mp/v1
+  auth_header: MEMBERPRESS-API-KEY (or a BARE key in Authorization — never "Bearer")
+  idempotency: none — read before every write retry
+  rate_limits: none published; serialize writes and back off on 5xx
+  status_page: none — availability is the site owner's
+  plan_gate: the Developer Tools add-on is a Scale-plan feature

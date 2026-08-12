@@ -1,0 +1,80 @@
+generated: '2026-08-12'
+method: searched
+source: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+docs:
+- https://memberpress.com/docs/overview-of-using-the-developer-tools/
+- https://github.com/caseproof/memberpress-rest-api-documentation#authentication
+- https://memberpress.com/docs/developer-tools-actions/
+summary:
+  types:
+  - apiKey
+  - wordpress-capability
+  api_key_in:
+  - header
+  oauth2: false
+  openid_connect: false
+  mtls: false
+  note: >-
+    MemberPress is self-hosted. Credentials are issued by the MemberPress Developer Tools add-on
+    inside the customer's own WordPress installation — there is no vendor-operated identity
+    provider, no OAuth authorization server and no token exchange. MemberPress publishes two
+    different header names for the same key across its own documentation surfaces; both are
+    recorded below rather than picking one.
+schemes:
+- name: MemberPressApiKey
+  type: apiKey
+  in: header
+  parameter: MEMBERPRESS-API-KEY
+  description: >-
+    Developer Tools API key. Generated automatically when the Developer Tools add-on is activated
+    and regenerable from the MemberPress > Developer screen if compromised. This is the header
+    name MemberPress documents on its own docs site.
+  issuance: Self-service inside WP Admin (MemberPress > Developer). No vendor approval step.
+  rotation: Regenerate from the Developer screen. MemberPress documents regeneration as the
+    remedy for a compromised key; there is no published overlap/grace window.
+  source: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+- name: AuthorizationApiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: >-
+    The same Developer Tools API key sent in the `Authorization` header. This is the form used
+    throughout the MemberPress REST API documentation repository and in every request of its
+    published Postman collection. It is a BARE key, not an RFC 7235 `Bearer <token>` credential —
+    an agent that prefixes `Bearer ` will fail.
+  source: https://github.com/caseproof/memberpress-rest-api-documentation#authentication
+- name: WordPressUserCapability
+  type: session
+  in: cookie
+  parameter: wordpress_logged_in_*
+  description: >-
+    A logged-in WordPress user holding the `remove_users` capability (typically an administrator)
+    is authorized without an API key. Callers lacking the capability receive HTTP 401.
+  source: https://github.com/caseproof/memberpress-rest-api-documentation#authentication
+webhook_authentication:
+- name: MemberPressWebhookKey
+  in: header
+  parameter: memberpress-webhook-key
+  direction: inbound-to-subscriber
+  description: >-
+    Webhook Key introduced in MemberPress 1.2.5. MemberPress sends this header on outbound webhook
+    deliveries so the receiving endpoint can verify the call. This is a shared secret, not an HMAC
+    signature over the payload — a receiver cannot verify body integrity, only origin possession
+    of the key.
+  source: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+- name: BasicAuthentication
+  in: header
+  parameter: Authorization
+  description: >-
+    MemberPress additionally documents Basic Authentication (with the WordPress Application
+    Passwords plugin) for webhook delivery, describing it in its own documentation as the "less
+    secure" option.
+  source: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+gaps:
+- No OAuth 2.0 or OpenID Connect surface — key-auth only, so there is no scope model and no
+  scopes/ artifact for this provider.
+- No published key-expiry, key-scoping or per-key permission model. A Developer Tools key is
+  effectively administrator-equivalent over every MemberPress resource.
+- Webhook deliveries carry a static shared secret rather than a per-payload signature.
+- The `/me/permissions` endpoint that would let a caller discover its own authorization is
+  documented by MemberPress as not present in all installations.
