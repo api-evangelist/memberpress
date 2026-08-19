@@ -6,12 +6,10 @@ status: published
 hosting: self-hosted
 transport: unknown
 endpoint: null
-endpoint_note: >-
-  MemberPress operates no remote/hosted MCP endpoint. AI Foundation is a WordPress add-on that
-  runs the MCP server inside the customer's own site, so the endpoint is per-installation and
-  MemberPress does not publish its path. tools/list could not be introspected anonymously — there
-  is no vendor host to POST to. Everything recorded here comes from MemberPress's own
-  announcement, not from a live manifest.
+endpoint_note: MemberPress operates no remote/hosted MCP endpoint. AI Foundation is a WordPress add-on
+  that runs the MCP server inside the customer's own site, so the endpoint is per-installation and MemberPress
+  does not publish its path. tools/list could not be introspected anonymously — there is no vendor host
+  to POST to. Everything recorded here comes from MemberPress's own announcement, not from a live manifest.
 install:
   path: WP Admin > MemberPress > Add-ons > AI Foundation
   plans:
@@ -19,8 +17,7 @@ install:
   - Growth
   - Scale
   requires_api_key: false
-  provider_quote: >-
-    "there's no custom code or API keys to wrangle"
+  provider_quote: '"there''s no custom code or API keys to wrangle"'
 clients_supported:
 - Claude Desktop
 - Claude Code
@@ -29,10 +26,9 @@ clients_supported:
 - Windsurf
 tool_count:
   standard_install: 41
-  note: >-
-    MemberPress states "41 on a standard install, plus more as you add Courses, Corporate
-    Accounts, Downloads, or Gifting." Individual tool names are NOT published as a list; only the
-    three below are named in the announcement.
+  note: MemberPress states "41 on a standard install, plus more as you add Courses, Corporate Accounts,
+    Downloads, or Gifting." Individual tool names are NOT published as a list; only the three below are
+    named in the announcement.
 tools_named_by_provider:
 - name: get_course_completion_rates
   category: reporting
@@ -50,20 +46,28 @@ tool_categories_stated:
 - reporting (revenue, churn, cohort analysis, lifetime value, renewal forecasts, engagement)
 human_in_the_loop:
   approval_required: true
-  provider_quote: >-
-    "You can request changes like refunds or plan updates, with your approval required before
-    anything happens."
+  provider_quote: '"You can request changes like refunds or plan updates, with your approval required
+    before anything happens."'
 authentication:
   model: WordPress site session / add-on install
   oauth_authorization_server: null
   oauth_protected_resource: null
-  note: >-
-    No /.well-known/oauth-authorization-server or /.well-known/oauth-protected-resource is served
-    on memberpress.com (both 404 on 2026-08-12). Because the server is self-hosted, any OAuth
-    discovery documents would live on the customer's own site.
+  note: No /.well-known/oauth-authorization-server or /.well-known/oauth-protected-resource is served
+    on memberpress.com (both 404 on 2026-08-12). Because the server is self-hosted, any OAuth discovery
+    documents would live on the customer's own site.
 gaps:
-- No published tools/list manifest, so no tool input schemas are available without an
-  authenticated customer installation.
+- No published tools/list manifest, so no tool input schemas are available without an authenticated customer
+  installation.
 - No documented MCP endpoint path, transport (stdio vs streamable HTTP) or protocol version.
-- No vendor-hosted remote server, so the MCP surface cannot be evaluated or monitored
-  independently of a customer site.
+- No vendor-hosted remote server, so the MCP surface cannot be evaluated or monitored independently of
+  a customer site.
+deployment:
+  mode: unclear
+  verified: searched
+  tools:
+    standard_install: 41
+    note: MemberPress states "41 on a standard install, plus more as you add Courses, Corporate Accounts,
+      Downloads, or Gifting." Individual tool names are NOT published as a list; only the three below
+      are named in the announcement.
+  checked: '2026-08-12'
+  source: catalog MCP census

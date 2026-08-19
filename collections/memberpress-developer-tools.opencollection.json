@@ -1,0 +1,1383 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MemberPress Developer Tools REST API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "MEMBERPRESS-API-KEY",
+      "value": "{{MEMBERPRESS-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/me"
+          },
+          "docs": "Verifies that the supplied API key is valid and returns basic information about the authenticated user. Documented response: `{\"success\": true, \"data\": {\"username\": \"admin\"}}`."
+        },
+        {
+          "info": {
+            "name": "Get user permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/me/permissions"
+          },
+          "docs": "Returns the permissions of the authenticated user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/members",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              },
+              {
+                "name": "search[id]",
+                "value": "",
+                "type": "query",
+                "description": "Search by member ID."
+              },
+              {
+                "name": "search[email]",
+                "value": "",
+                "type": "query",
+                "description": "Search by email address."
+              },
+              {
+                "name": "search[username]",
+                "value": "",
+                "type": "query",
+                "description": "Search by username."
+              }
+            ]
+          },
+          "docs": "Lists all members (WordPress users) known to MemberPress."
+        },
+        {
+          "info": {
+            "name": "Create member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/members",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new member. `email` and `username` are required."
+        },
+        {
+          "info": {
+            "name": "Get member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/members/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Member ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific member by ID."
+        },
+        {
+          "info": {
+            "name": "Update member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/members/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Member ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing member. Accepts the same fields as create, except `password`."
+        },
+        {
+          "info": {
+            "name": "Delete member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/members/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Member ID."
+              }
+            ]
+          },
+          "docs": "Deletes a member. MemberPress documents this as destructive — use with caution."
+        },
+        {
+          "info": {
+            "name": "Get member options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/member_options"
+          },
+          "docs": "Returns the available options for members (roles and similar)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Memberships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/memberships",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              },
+              {
+                "name": "search[id]",
+                "value": "",
+                "type": "query",
+                "description": "Search by membership ID."
+              },
+              {
+                "name": "search[title]",
+                "value": "",
+                "type": "query",
+                "description": "Search by title."
+              }
+            ]
+          },
+          "docs": "Lists all memberships (the products members buy)."
+        },
+        {
+          "info": {
+            "name": "Create membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/memberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new membership. `title` is required."
+        },
+        {
+          "info": {
+            "name": "Get membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Membership ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific membership by ID."
+        },
+        {
+          "info": {
+            "name": "Update membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Membership ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing membership."
+        },
+        {
+          "info": {
+            "name": "Delete membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Membership ID."
+              }
+            ]
+          },
+          "docs": "Deletes a membership."
+        },
+        {
+          "info": {
+            "name": "Get membership options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/membership_options"
+          },
+          "docs": "Returns the available options for memberships (period types and similar)."
+        },
+        {
+          "info": {
+            "name": "Get membership member options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/memberships/:id/member_options",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Membership ID."
+              }
+            ]
+          },
+          "docs": "Returns member-related options specific to a membership."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/transactions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              },
+              {
+                "name": "search[id]",
+                "value": "",
+                "type": "query",
+                "description": "Search by transaction ID."
+              },
+              {
+                "name": "search[member]",
+                "value": "",
+                "type": "query",
+                "description": "Search by member ID."
+              },
+              {
+                "name": "search[membership]",
+                "value": "",
+                "type": "query",
+                "description": "Search by membership ID."
+              },
+              {
+                "name": "search[subscription]",
+                "value": "",
+                "type": "query",
+                "description": "Search by subscription ID."
+              },
+              {
+                "name": "search[status]",
+                "value": "",
+                "type": "query",
+                "description": "Search by status."
+              }
+            ]
+          },
+          "docs": "Lists all transactions."
+        },
+        {
+          "info": {
+            "name": "Create transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new transaction. `member` and `membership` are required."
+        },
+        {
+          "info": {
+            "name": "Get transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/transactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific transaction by ID."
+        },
+        {
+          "info": {
+            "name": "Update transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/transactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing transaction."
+        },
+        {
+          "info": {
+            "name": "Delete transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/transactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID."
+              }
+            ]
+          },
+          "docs": "Deletes a transaction."
+        },
+        {
+          "info": {
+            "name": "Refund transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/transactions/:id/refund",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID."
+              }
+            ]
+          },
+          "docs": "Refunds a transaction through its payment gateway."
+        },
+        {
+          "info": {
+            "name": "Refund transaction and cancel subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/transactions/:id/refund_and_cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID."
+              }
+            ]
+          },
+          "docs": "Refunds a transaction and cancels the subscription associated with it."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              },
+              {
+                "name": "search[id]",
+                "value": "",
+                "type": "query",
+                "description": "Search by subscription ID."
+              },
+              {
+                "name": "search[member]",
+                "value": "",
+                "type": "query",
+                "description": "Search by member ID."
+              },
+              {
+                "name": "search[membership]",
+                "value": "",
+                "type": "query",
+                "description": "Search by membership ID."
+              },
+              {
+                "name": "search[status]",
+                "value": "",
+                "type": "query",
+                "description": "Search by status."
+              }
+            ]
+          },
+          "docs": "Lists all subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new subscription. `member` and `membership` are required."
+        },
+        {
+          "info": {
+            "name": "Get subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific subscription by ID."
+        },
+        {
+          "info": {
+            "name": "Update subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing subscription."
+        },
+        {
+          "info": {
+            "name": "Delete subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID."
+              }
+            ]
+          },
+          "docs": "Deletes a subscription."
+        },
+        {
+          "info": {
+            "name": "Cancel subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID."
+              }
+            ]
+          },
+          "docs": "Cancels a subscription."
+        },
+        {
+          "info": {
+            "name": "Suspend subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions/:id/suspend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID."
+              }
+            ]
+          },
+          "docs": "Suspends (pauses) a subscription."
+        },
+        {
+          "info": {
+            "name": "Resume subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/subscriptions/:id/resume",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID."
+              }
+            ]
+          },
+          "docs": "Resumes a suspended subscription."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/groups",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              }
+            ]
+          },
+          "docs": "Lists all membership groups."
+        },
+        {
+          "info": {
+            "name": "Create group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new group. `title` is required."
+        },
+        {
+          "info": {
+            "name": "Get group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Group ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific group by ID."
+        },
+        {
+          "info": {
+            "name": "Update group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Group ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing group."
+        },
+        {
+          "info": {
+            "name": "Delete group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Group ID."
+              }
+            ]
+          },
+          "docs": "Deletes a group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/rules",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              }
+            ]
+          },
+          "docs": "Lists all content access rules."
+        },
+        {
+          "info": {
+            "name": "Create rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new access rule. `title` is required."
+        },
+        {
+          "info": {
+            "name": "Get rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Rule ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific rule by ID."
+        },
+        {
+          "info": {
+            "name": "Update rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Rule ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing rule."
+        },
+        {
+          "info": {
+            "name": "Delete rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/rules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Rule ID."
+              }
+            ]
+          },
+          "docs": "Deletes a rule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Coupons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List coupons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/coupons",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              }
+            ]
+          },
+          "docs": "Lists all coupons."
+        },
+        {
+          "info": {
+            "name": "Create coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/coupons",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new coupon. `code` is required."
+        },
+        {
+          "info": {
+            "name": "Get coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/coupons/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Coupon ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific coupon by ID."
+        },
+        {
+          "info": {
+            "name": "Update coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/coupons/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Coupon ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing coupon."
+        },
+        {
+          "info": {
+            "name": "Delete coupon",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/coupons/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Coupon ID."
+              }
+            ]
+          },
+          "docs": "Deletes a coupon."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reminders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reminders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/reminders",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              }
+            ]
+          },
+          "docs": "Lists all reminders."
+        },
+        {
+          "info": {
+            "name": "Create reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/reminders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new reminder. `name` is required."
+        },
+        {
+          "info": {
+            "name": "Get reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/reminders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Reminder ID."
+              }
+            ]
+          },
+          "docs": "Gets a specific reminder by ID."
+        },
+        {
+          "info": {
+            "name": "Update reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}/wp-json/mp/v1/reminders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Reminder ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing reminder."
+        },
+        {
+          "info": {
+            "name": "Delete reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/reminders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Reminder ID."
+              }
+            ]
+          },
+          "docs": "Deletes a reminder."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}/wp-json/mp/v1/events",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Items per page."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General search term."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Field to order results by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (ASC or DESC)."
+              },
+              {
+                "name": "search[event]",
+                "value": "",
+                "type": "query",
+                "description": "Search by event type."
+              }
+            ]
+          },
+          "docs": "Lists MemberPress events recorded on the site."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Subscribe to events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}/wp-json/mp/v1/webhooks/subscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes a callback URL to one MemberPress event type, or to all of them."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe from events",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}/wp-json/mp/v1/webhooks/unsubscribe/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook subscription ID."
+              }
+            ]
+          },
+          "docs": "Removes a webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
