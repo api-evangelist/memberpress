@@ -21,6 +21,17 @@ modified: '2026-08-12'
 tags:
 - Company
 - Membership
+- Subscription
+- WordPress
+- Payments
+- E-Commerce
+- Courses
+- Content Management
+- Webhook
+- MCP
+tags_raw:
+- Company
+- Membership
 - Subscriptions
 - WordPress
 - Payments
@@ -42,6 +53,12 @@ apis:
   humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
   baseURL: https://{site}/wp-json/mp/v1
   tags:
+  - Members
+  - Memberships
+  - Subscription
+  - Transaction
+  - Webhook
+  tags_raw:
   - Members
   - Memberships
   - Subscriptions
@@ -92,6 +109,10 @@ apis:
   humanURL: https://memberpress.com/blog/ai-foundation/
   baseURL: https://{site}/wp-json
   tags:
+  - MCP
+  - Artificial Intelligence
+  - Reporting
+  tags_raw:
   - MCP
   - AI
   - Reporting
