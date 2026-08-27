@@ -41,71 +41,14 @@ tags_raw:
 - Webhooks
 - MCP
 apis:
-- aid: memberpress:developer-tools-rest-api
-  name: MemberPress Developer Tools REST API
-  description: 'REST API exposed by the MemberPress Developer Tools add-on on the site owner''s own
-    WordPress installation, under the WordPress REST namespace mp/v1. Covers members, memberships,
-    transactions, subscriptions, groups, rules, coupons, reminders and the event log, plus webhook
-    subscribe/unsubscribe. Authenticated with a Developer Tools API key sent in the
-    MEMBERPRESS-API-KEY header (the documentation repository and Postman collection send the same
-    key in the Authorization header), or as a logged-in WordPress user holding the remove_users
-    capability. MemberPress is self-hosted, so the base URL is always the customer''s own site.'
-  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
-  baseURL: https://{site}/wp-json/mp/v1
-  tags:
-  - Members
-  - Memberships
-  - Subscription
-  - Transaction
-  - Webhook
-  tags_raw:
-  - Members
-  - Memberships
-  - Subscriptions
-  - Transactions
-  - Webhooks
-  properties:
-  - type: OpenAPI
-    url: openapi/memberpress-developer-tools-openapi.yml
-  - type: Postman
-    url: postman/memberpress-api-postman-collection.json
-  - type: Documentation
-    url: https://github.com/caseproof/memberpress-rest-api-documentation
-  - type: APIReference
-    url: https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
-  - type: GettingStarted
-    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
-  - type: Authentication
-    url: authentication/memberpress-authentication.yml
-  - type: Webhooks
-    url: asyncapi/memberpress-webhooks.yml
-  - type: ErrorCatalog
-    url: errors/memberpress-error-codes.yml
-  - type: Conventions
-    url: conventions/memberpress-conventions.yml
-  - type: DataModel
-    url: data-model/memberpress-data-model.yml
-  - type: Overlay
-    url: overlays/memberpress-developer-tools-overlay.yaml
-  - type: RateLimits
-    url: rate-limits/memberpress-rate-limits.yml
-  x-evidence:
-    verified: '2026-08-12'
-    method: docs+postman
-    openapi_published_by_provider: false
-    note: MemberPress publishes no OpenAPI. The openapi/ file is an API Evangelist derivation of
-      MemberPress's own README, Postman collection and Developer Tools documentation; the Postman
-      collection under postman/ is the provider-published artifact, saved verbatim.
-    endpoints_checked: MemberPress is self-hosted — there is no vendor-operated host to call
-      anonymously, so no live endpoint probe is possible without a customer installation.
 - aid: memberpress:ai-foundation-mcp
   name: MemberPress AI Foundation MCP Server
-  description: 'WordPress MCP server shipped by the MemberPress AI Foundation add-on. It exposes
-    membership, subscription, transaction, coupon, access-rule and reporting tools — MemberPress
-    states 41 tools on a standard install, with more added by the Courses, Corporate Accounts,
-    Downloads and Gifting add-ons — to MCP clients such as Claude Desktop, Claude Code, Cursor, VS
-    Code and Windsurf. The server runs inside the customer''s own WordPress site, so there is no
-    vendor-hosted remote MCP endpoint to introspect anonymously.'
+  description: >-
+    WordPress MCP server shipped by the MemberPress AI Foundation add-on. It exposes membership, subscription,
+    transaction, coupon, access-rule and reporting tools — MemberPress states 41 tools on a standard install,
+    with more added by the Courses, Corporate Accounts, Downloads and Gifting add-ons — to MCP clients
+    such as Claude Desktop, Claude Code, Cursor, VS Code and Windsurf. The server runs inside the customer's
+    own WordPress site, so there is no vendor-hosted remote MCP endpoint to introspect anonymously.
   humanURL: https://memberpress.com/blog/ai-foundation/
   baseURL: https://{site}/wp-json
   tags:
@@ -126,15 +69,359 @@ apis:
   x-evidence:
     verified: '2026-08-12'
     method: docs
-    note: Tool count and three named tools (get_course_completion_rates, get_member_billing_history,
-      get_churn_predictions) are quoted from MemberPress's own announcement. The full tools/list
-      manifest requires an authenticated customer installation; it was not introspected.
+    note: >-
+      Tool count and three named tools (get_course_completion_rates, get_member_billing_history, get_churn_predictions)
+      are quoted from MemberPress's own announcement. The full tools/list manifest requires an authenticated
+      customer installation; it was not introspected.
+- aid: memberpress:memberpress-authentication-api
+  name: MemberPress Authentication API
+  description: Verify the API key and inspect permissions.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-authentication-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-coupons-api
+  name: MemberPress Coupons API
+  description: Discount codes applied at checkout.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Coupons
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-coupons-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-events-api
+  name: MemberPress Events API
+  description: The MemberPress event log.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-events-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-groups-api
+  name: MemberPress Groups API
+  description: Groups of memberships, used for pricing pages and upgrade paths.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-groups-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-members-api
+  name: MemberPress Members API
+  description: Members are the WordPress users MemberPress tracks.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-members-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-memberships-api
+  name: MemberPress Memberships API
+  description: Memberships are the products members buy.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Memberships
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-memberships-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-reminders-api
+  name: MemberPress Reminders API
+  description: Scheduled member emails triggered by events.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Reminders
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-reminders-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-rules-api
+  name: MemberPress Rules API
+  description: Smart Rules that protect content and drip access.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-rules-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-subscriptions-api
+  name: MemberPress Subscriptions API
+  description: Recurring billing agreements.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-subscriptions-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-transactions-api
+  name: MemberPress Transactions API
+  description: One-time and recurring payment records.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-transactions-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
+- aid: memberpress:memberpress-webhooks-api
+  name: MemberPress Webhooks API
+  description: Subscribe callback URLs to MemberPress events.
+  humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
+  baseURL: https://{site}/wp-json/mp/v1
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/memberpress-webhooks-api-openapi.yml
+  - type: Postman
+    url: postman/memberpress-api-postman-collection.json
+  - type: Documentation
+    url: https://github.com/caseproof/memberpress-rest-api-documentation
+  - type: APIReference
+    url: >-
+      https://github.com/caseproof/memberpress-rest-api-documentation#core-resources-and-endpoints
+  - type: GettingStarted
+    url: https://memberpress.com/docs/overview-of-using-the-developer-tools/
+  - type: Authentication
+    url: authentication/memberpress-authentication.yml
+  - type: Webhooks
+    url: asyncapi/memberpress-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/memberpress-error-codes.yml
+  - type: Conventions
+    url: conventions/memberpress-conventions.yml
+  - type: DataModel
+    url: data-model/memberpress-data-model.yml
+  - type: RateLimits
+    url: rate-limits/memberpress-rate-limits.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/memberpress-developer-tools-overlay.yaml
 - type: DomainSecurity
   url: security/memberpress-domain-security.yml
 - type: Website
