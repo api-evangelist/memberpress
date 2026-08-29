@@ -9,6 +9,18 @@ description: 'MemberPress is a WordPress membership, course and subscription-com
   installation, plus a webhook subscription surface for fourteen membership and billing events. The
   AI Foundation add-on ships a WordPress MCP server that lets Claude, Cursor and VS Code read and
   act on membership data directly.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://memberpress.com/wp-content/uploads/2022/10/mp-icon-RGB_Icon-01.jpg
 url: https://raw.githubusercontent.com/api-evangelist/memberpress/refs/heads/main/apis.yml
 x-type: company
