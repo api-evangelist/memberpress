@@ -153,6 +153,8 @@ apis:
   humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
   baseURL: https://{site}/wp-json/mp/v1
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -184,6 +186,8 @@ apis:
   humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
   baseURL: https://{site}/wp-json/mp/v1
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -339,6 +343,8 @@ apis:
   humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
   baseURL: https://{site}/wp-json/mp/v1
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -370,6 +376,8 @@ apis:
   humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
   baseURL: https://{site}/wp-json/mp/v1
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -401,6 +409,8 @@ apis:
   humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
   baseURL: https://{site}/wp-json/mp/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
