@@ -1,0 +1,431 @@
+openapi: 3.2.0
+info:
+  title: MemberPress Developer Tools REST Subscriptions API
+  version: v1
+  summary: Members, memberships, transactions, subscriptions, groups, rules, coupons, reminders, events and webhooks for a self-hosted MemberPress WordPress site.
+  description: 'The MemberPress REST API is exposed by the MemberPress **Developer Tools** add-on on the site owner''s own WordPress installation, under the WordPress REST namespace `mp/v1`. There is no MemberPress-operated SaaS host: the base URL is always `https://{site}/wp-json/mp/v1`, where `{site}` is the customer''s WordPress site.
+
+
+    AUTHENTICATION. MemberPress documents two mechanisms. The Developer Tools documentation page states the API key is sent in the `MEMBERPRESS-API-KEY` request header; the MemberPress REST API documentation repository and its Postman collection send the same key in the `Authorization` header. Both are provider-published and both are modelled here. Alternatively a logged-in WordPress user holding the `remove_users` capability (typically an administrator) is authorized; a caller without it receives 401.
+
+
+    PROVENANCE. **MemberPress publishes no OpenAPI description.** This document is DERIVED, not harvested. Every path, method, query parameter and request field below is transcribed from MemberPress''s own public sources: the README of https://github.com/caseproof/memberpress-rest-api-documentation, the `memberpress-api-postman-collection.json` published in that same repository (saved verbatim in this repo under `postman/`), and https://memberpress.com/docs/overview-of-using-the-developer-tools/. Response schemas are deliberately left as generic objects because MemberPress does not publish response field definitions — nothing is invented to fill the gap. Endpoints MemberPress itself flags as not present in every installation carry an `x-availability` note.'
+  contact:
+    name: MemberPress Support
+    url: https://memberpress.com/support/
+  license:
+    name: Proprietary
+    identifier: LicenseRef-Proprietary
+  x-provenance:
+    generated: '2026-08-12'
+    method: derived
+    published_by_provider: false
+    derived_by: API Evangelist enrichment pipeline
+    sources:
+    - https://github.com/caseproof/memberpress-rest-api-documentation/blob/main/README.md
+    - https://raw.githubusercontent.com/caseproof/memberpress-rest-api-documentation/main/memberpress-api-postman-collection.json
+    - https://memberpress.com/docs/overview-of-using-the-developer-tools/
+    - https://memberpress.com/docs/developer-tools-actions/
+    note: MemberPress publishes no OpenAPI/Swagger description on any host probed on 2026-08-12 (memberpress.com/openapi.json 404, /swagger.json 404, no spec in the caseproof GitHub organization). This description is API Evangelist's faithful transcription of MemberPress-published documentation and must not be presented as a MemberPress-published artifact.
+servers:
+- url: https://{site}/wp-json/mp/v1
+  description: The customer's own WordPress installation. MemberPress is self-hosted; there is no vendor-operated API host.
+  variables:
+    site:
+      default: example.com
+      description: Hostname of the WordPress site running MemberPress with the Developer Tools add-on enabled.
+security:
+- MemberPressApiKey: []
+- AuthorizationApiKey: []
+tags:
+- name: Subscriptions
+  description: Recurring billing agreements.
+paths:
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      tags:
+      - Subscriptions
+      summary: List subscriptions
+      description: Lists all subscriptions.
+      responses:
+        '200':
+          description: Success. Returns a JSON array of resources. The response carries the WordPress pagination headers `X-WP-Total` and `X-WP-TotalPages`.
+          headers:
+            X-WP-Total:
+              description: Total number of items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number.
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        required: false
+        description: Items per page.
+        schema:
+          type: integer
+          default: 10
+      - name: search
+        in: query
+        required: false
+        description: General search term.
+        schema:
+          type: string
+      - name: orderby
+        in: query
+        required: false
+        description: Field to order results by.
+        schema:
+          type: string
+      - name: order
+        in: query
+        required: false
+        description: Sort direction (ASC or DESC).
+        schema:
+          type: string
+      - name: search[id]
+        in: query
+        required: false
+        description: Search by subscription ID.
+        schema:
+          type: string
+      - name: search[member]
+        in: query
+        required: false
+        description: Search by member ID.
+        schema:
+          type: string
+      - name: search[membership]
+        in: query
+        required: false
+        description: Search by membership ID.
+        schema:
+          type: string
+      - name: search[status]
+        in: query
+        required: false
+        description: Search by status.
+        schema:
+          type: string
+    post:
+      operationId: createSubscription
+      tags:
+      - Subscriptions
+      summary: Create subscription
+      description: Creates a new subscription. `member` and `membership` are required.
+      responses:
+        '200':
+          description: Success. MemberPress returns the requested resource(s) as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                member:
+                  type: integer
+                  description: Member ID.
+                membership:
+                  type: integer
+                  description: Membership ID.
+                status:
+                  type: string
+                  description: Subscription status.
+                period:
+                  type: integer
+                  description: Billing period number.
+                period_type:
+                  type: string
+                  description: Billing period unit.
+                limit_cycles:
+                  type: boolean
+                  description: Limit the number of billing cycles.
+                limit_cycles_num:
+                  type: integer
+                  description: Number of billing cycles.
+                gateway:
+                  type: string
+                  description: Payment gateway.
+                trial:
+                  type: boolean
+                  description: Whether a trial applies.
+                trial_days:
+                  type: integer
+                  description: Trial days.
+                trial_amount:
+                  type: string
+                  description: Trial amount.
+                created_at:
+                  type: string
+                  description: Creation date.
+              required:
+              - member
+              - membership
+  /subscriptions/{id}:
+    get:
+      operationId: getSubscription
+      tags:
+      - Subscriptions
+      summary: Get subscription
+      description: Gets a specific subscription by ID.
+      responses:
+        '200':
+          description: Success. MemberPress returns the requested resource(s) as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Subscription ID.
+        schema:
+          type: integer
+    put:
+      operationId: updateSubscription
+      tags:
+      - Subscriptions
+      summary: Update subscription
+      description: Updates an existing subscription.
+      responses:
+        '200':
+          description: Success. MemberPress returns the requested resource(s) as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Subscription ID.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                member:
+                  type: integer
+                  description: Member ID.
+                membership:
+                  type: integer
+                  description: Membership ID.
+                status:
+                  type: string
+                  description: Subscription status.
+                period:
+                  type: integer
+                  description: Billing period number.
+                period_type:
+                  type: string
+                  description: Billing period unit.
+                limit_cycles:
+                  type: boolean
+                  description: Limit the number of billing cycles.
+                limit_cycles_num:
+                  type: integer
+                  description: Number of billing cycles.
+                gateway:
+                  type: string
+                  description: Payment gateway.
+                trial:
+                  type: boolean
+                  description: Whether a trial applies.
+                trial_days:
+                  type: integer
+                  description: Trial days.
+                trial_amount:
+                  type: string
+                  description: Trial amount.
+                created_at:
+                  type: string
+                  description: Creation date.
+    delete:
+      operationId: deleteSubscription
+      tags:
+      - Subscriptions
+      summary: Delete subscription
+      description: Deletes a subscription.
+      responses:
+        '200':
+          description: Success. MemberPress returns the requested resource(s) as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Subscription ID.
+        schema:
+          type: integer
+  /subscriptions/{id}/cancel:
+    post:
+      operationId: cancelSubscription
+      tags:
+      - Subscriptions
+      summary: Cancel subscription
+      description: Cancels a subscription.
+      responses:
+        '200':
+          description: Success. MemberPress returns the requested resource(s) as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Subscription ID.
+        schema:
+          type: integer
+  /subscriptions/{id}/suspend:
+    post:
+      operationId: suspendSubscription
+      tags:
+      - Subscriptions
+      summary: Suspend subscription
+      description: Suspends (pauses) a subscription.
+      responses:
+        '200':
+          description: Success. MemberPress returns the requested resource(s) as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Subscription ID.
+        schema:
+          type: integer
+  /subscriptions/{id}/resume:
+    post:
+      operationId: resumeSubscription
+      tags:
+      - Subscriptions
+      summary: Resume subscription
+      description: Resumes a suspended subscription.
+      responses:
+        '200':
+          description: Success. MemberPress returns the requested resource(s) as JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized. Returned when the API key is missing or invalid, or when the authenticated WordPress user does not hold the `remove_users` capability.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Subscription ID.
+        schema:
+          type: integer
+components:
+  schemas:
+    Error:
+      type: object
+      description: 'MemberPress returns WordPress REST API errors. The documented success envelope is `{"success": true, "data": {...}}`; WordPress core errors carry `code`, `message` and `data.status`.'
+      properties:
+        code:
+          type: string
+          description: WordPress error code slug.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code.
+  securitySchemes:
+    MemberPressApiKey:
+      type: apiKey
+      in: header
+      name: MEMBERPRESS-API-KEY
+      description: Developer Tools API key, as documented at https://memberpress.com/docs/overview-of-using-the-developer-tools/
+    AuthorizationApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The same Developer Tools API key sent in the `Authorization` header, as used by the MemberPress REST API documentation repository and its Postman collection. Note this is a bare key, not an RFC 7235 `Bearer <token>` credential.
+externalDocs:
+  description: MemberPress REST API documentation (caseproof/memberpress-rest-api-documentation)
+  url: https://github.com/caseproof/memberpress-rest-api-documentation
