@@ -265,6 +265,8 @@ apis:
   humanURL: https://github.com/caseproof/memberpress-rest-api-documentation
   baseURL: https://{site}/wp-json/mp/v1
   tags:
+  - Membership
+  tags_raw:
   - Memberships
   properties:
   - type: OpenAPI
