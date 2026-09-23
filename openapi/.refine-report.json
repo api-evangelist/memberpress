@@ -1,0 +1,40 @@
+{
+  "provider": "memberpress",
+  "sources": [
+    "_original/memberpress-developer-tools-openapi.yml"
+  ],
+  "outputs": [
+    "memberpress-authentication-api-openapi.yml",
+    "memberpress-coupons-api-openapi.yml",
+    "memberpress-events-api-openapi.yml",
+    "memberpress-groups-api-openapi.yml",
+    "memberpress-members-api-openapi.yml",
+    "memberpress-memberships-api-openapi.yml",
+    "memberpress-reminders-api-openapi.yml",
+    "memberpress-rules-api-openapi.yml",
+    "memberpress-subscriptions-api-openapi.yml",
+    "memberpress-transactions-api-openapi.yml",
+    "memberpress-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "memberpress-developer-tools-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "memberpress-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-coupons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-memberships-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-reminders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "memberpress-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}
