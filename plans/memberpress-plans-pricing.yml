@@ -89,3 +89,31 @@ api_access_note: >-
   The Developer Tools add-on that exposes /wp-json/mp/v1 is gated to the Scale tier. An
   integrator evaluating MemberPress as an API should read that as the real entry price for API
   access: 499.50 USD per year promotional, 999.00 USD list.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  units: []
+  plans:
+  - name: Launch
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Growth
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Scale
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - year
