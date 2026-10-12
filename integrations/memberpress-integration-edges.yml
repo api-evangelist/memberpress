@@ -1,0 +1,461 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/memberpress/integrations
+checked:
+- https://composio.dev/toolkits/memberpress
+- https://monid.ai/tools/memberpress
+- https://n8n.io/integrations/memberpress/
+- https://zapier.com/apps/memberpress/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: memberpress
+  url: https://zapier.com/apps/memberpress/integrations
+  external_url: https://memberpress.com/?utm_source=zapier.com&utm_medium=button&utm_campaign=zapier-partnership
+  partner_tier: GOLD
+  triggers:
+  - key: course_completed
+    label: Course Completed
+  - key: lesson_completed
+    label: Lesson Completed
+  - key: member_deleted
+    label: Member Deleted
+  - key: member_signup_completed
+    label: Member Signup Completed
+  - key: quiz_attempted
+    label: Quiz Attempted
+  - key: subscription_created
+    label: Subscription Created
+  - key: subscription_expired
+    label: Subscription Expired
+  - key: subscription_stopped
+    label: Subscription Stopped
+  - key: transaction_completed
+    label: Transaction Completed
+  - key: transaction_expired
+    label: Transaction Expired
+  - key: transaction_refunded
+    label: Transaction Refunded
+  actions:
+  - key: create_coupon
+    label: Create Coupon
+  - key: create_member
+    label: Create Member
+  - key: create_subscription
+    label: Create Subscription
+  - key: create_transaction
+    label: Create Transaction
+  - key: delete_coupon
+    label: Delete Coupon
+  - key: delete_subscription
+    label: Delete Subscription
+  - key: delete_transaction
+    label: Delete Transaction
+  - key: update_member
+    label: Update Member
+  - key: update_subscription
+    label: Update Subscription
+  - key: update_transaction
+    label: Update Transaction
+  searches:
+  - key: get_member
+    label: Get Member
+  - key: get_subscription
+    label: Get Subscription
+  - key: get_transaction
+    label: Get Transaction
+edges:
+- partner_name: SamCart
+  partner: samcart
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/samcart
+  direction: third-party
+  category: eCommerce
+  partner_url: https://samcart.com/
+- partner_name: Teachable
+  partner: teachable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/teachable
+  direction: third-party
+  category: Online Courses
+  partner_url: https://teachable.com/
+- partner_name: Plug&Pay
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/plug-and-pay
+  direction: third-party
+  category: eCommerce
+  partner_url: https://plugandpay.nl/
+- partner_name: Lemon Squeezy
+  partner: lemon-squeezy
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/lemon-squeezy
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.lemonsqueezy.com/
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Brevo
+  partner: brevo
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/brevo
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://www.sendinblue.com/?utm_medium=plugin&utm_source=zapier
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: EngageBay Marketing
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/engagebay-marketing
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.engagebay.com/
+- partner_name: Flodesk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/flodesk
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://flodesk.com/
+- partner_name: MailerLite
+  partner: mailerlite
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/mailerlite
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.mailerlite.com/?utm_source=zapier&utm_medium=partner&utm_campaign=profile&utm_term=learn_more&utm_content=integrations
+- partner_name: Stripe
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/stripe
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: Bettermode
+  partner: bettermode
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/bettermode
+  direction: third-party
+  category: Social Media Accounts
+  partner_url: https://bettermode.com/
+- partner_name: HelloAsso
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/helloasso
+  direction: third-party
+  category: Payment Processing
+  partner_url: http://www.helloasso.com/
+- partner_name: JVZoo
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/jvzoo
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.jvzoo.com/
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: Facebook Lead Ads (for Business admins)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/facebook-lead-ads-beta
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://facebook.com/
+- partner_name: Facebook Conversions
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/facebook-conversions
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://developers.facebook.com/docs/marketing-api/server-side-api/guides/zapier-integration
+- partner_name: Kit
+  partner: convertkit
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/kit
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://kit.com/
+- partner_name: Salesforce
+  partner: salesforce
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/salesforce
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.salesforce.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: New User Approve
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/new-user-approve
+  direction: third-party
+  category: Contact Management
+  partner_url: https://wpexperts.io/our-brands/
+- partner_name: Discord
+  partner: discord
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/discord
+  direction: third-party
+  category: Team Chat
+  partner_url: https://discordapp.com/
+- partner_name: Zoho Sign
+  partner: zoho-sign
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/zoho-sign
+  direction: third-party
+  category: Signatures
+  partner_url: https://go.zoho.com/POF
+- partner_name: Paystack
+  partner: paystack
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/paystack
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://paystack.com/
+- partner_name: Transistor.fm
+  partner: transistor
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/transistorfm
+  direction: third-party
+  category: Video & Audio
+  partner_url: https://transistor.fm/
+- partner_name: UpViral
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/upviral
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: http://upviral.com/
+templates:
+- title: Add new MemberPress members as MailerLite subscribers
+  url: https://zapier.com/apps/mailerlite/integrations/memberpress/1086384/add-new-memberpress-members-as-mailerlite-subscribers
+  apps:
+  - memberpress
+  - mailerlite
+- title: Add new MemberPress signups to Google Sheets as spreadsheet rows
+  url: https://zapier.com/apps/google-sheets/integrations/memberpress/1303739/add-new-memberpress-signups-to-google-sheets-as-spreadsheet-rows
+  apps:
+  - memberpress
+  - google-sheets
+- title: Add new MemberPress members as contacts in HubSpot
+  url: https://zapier.com/apps/hubspot/integrations/memberpress/1107888/add-new-memberpress-members-as-contacts-in-hubspot
+  apps:
+  - memberpress
+  - hubspot
+- title: Create or update HubSpot contacts from completed MemberPress transactions
+  url: https://zapier.com/apps/hubspot/integrations/memberpress/1254239/create-or-update-hubspot-contacts-from-completed-memberpress-transactions
+  apps:
+  - memberpress
+  - hubspot
+- title: Create Google Sheets rows for newly-canceled MemberPress subscriptions
+  url: https://zapier.com/apps/google-sheets/integrations/memberpress/1001231/create-google-sheets-rows-for-newly-canceled-memberpress-subscriptions
+  apps:
+  - memberpress
+  - google-sheets
+- title: Log completed MemberPress transactions to Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/memberpress/1226617/log-completed-memberpress-transactions-to-google-sheets-rows
+  apps:
+  - memberpress
+  - google-sheets
+- title: Update HubSpot contacts whenever new MemberPress members sign up
+  url: https://zapier.com/apps/hubspot/integrations/memberpress/1598975/update-hubspot-contacts-whenever-new-memberpress-members-sign-up
+  apps:
+  - memberpress
+  - hubspot
+- title: Add new MemberPress members as ActiveCampaign contacts
+  url: https://zapier.com/apps/activecampaign/integrations/memberpress/1003201/add-new-memberpress-members-as-activecampaign-contacts
+  apps:
+  - memberpress
+  - activecampaign
+- title: Generate sales receipts in QuickBooks Online for newly-completed transactions in MemberPress
+  url: https://zapier.com/apps/memberpress/integrations/quickbooks/999890/generate-sales-receipts-in-quickbooks-online-for-newly-completed-transactions-in-memberpress
+  apps:
+  - memberpress
+  - quickbooks
+- title: Create new MemberPress subscriptions from new WooCommerce orders
+  url: https://zapier.com/apps/memberpress/integrations/woocommerce/1638788/create-new-memberpress-subscriptions-from-new-woocommerce-orders
+  apps:
+  - woocommerce
+  - memberpress
+- title: Add new MemberPress members as Keap contacts
+  url: https://zapier.com/apps/keap/integrations/memberpress/999724/add-new-memberpress-members-as-keap-contacts
+  apps:
+  - memberpress
+  - keap
+- title: Create new HubSpot contacts from completed MemberPress member signups
+  url: https://zapier.com/apps/hubspot/integrations/memberpress/1570969/create-new-hubspot-contacts-from-completed-memberpress-member-signups
+  apps:
+  - memberpress
+  - hubspot
+template_total: 412
