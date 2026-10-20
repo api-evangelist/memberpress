@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/mailerlite/integrations/memberpress/1086384/add-new-memberpress-members-as-mailerlite-subscribers
   template: https://zapier.com/apps/mailerlite/integrations/memberpress/1086384/add-new-memberpress-members-as-mailerlite-subscribers
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-add-new-memberpress-signups-to-google-sheets-as-spreadsheet-rows
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/memberpress/1303739/add-new-memberpress-signups-to-google-sheets-as-spreadsheet-rows
   template: https://zapier.com/apps/google-sheets/integrations/memberpress/1303739/add-new-memberpress-signups-to-google-sheets-as-spreadsheet-rows
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-add-new-memberpress-members-as-contacts-in-hubspot
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/memberpress/1107888/add-new-memberpress-members-as-contacts-in-hubspot
   template: https://zapier.com/apps/hubspot/integrations/memberpress/1107888/add-new-memberpress-members-as-contacts-in-hubspot
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-create-or-update-hubspot-contacts-from-completed-memberpress-transactions
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/memberpress/1254239/create-or-update-hubspot-contacts-from-completed-memberpress-transactions
   template: https://zapier.com/apps/hubspot/integrations/memberpress/1254239/create-or-update-hubspot-contacts-from-completed-memberpress-transactions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-create-google-sheets-rows-for-newly-canceled-memberpress-subscriptions
@@ -71,6 +75,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/memberpress/1001231/create-google-sheets-rows-for-newly-canceled-memberpress-subscriptions
   template: https://zapier.com/apps/google-sheets/integrations/memberpress/1001231/create-google-sheets-rows-for-newly-canceled-memberpress-subscriptions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-log-completed-memberpress-transactions-to-google-sheets-rows
@@ -85,6 +90,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/memberpress/1226617/log-completed-memberpress-transactions-to-google-sheets-rows
   template: https://zapier.com/apps/google-sheets/integrations/memberpress/1226617/log-completed-memberpress-transactions-to-google-sheets-rows
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-update-hubspot-contacts-whenever-new-memberpress-members-sign-up
@@ -99,6 +105,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/memberpress/1598975/update-hubspot-contacts-whenever-new-memberpress-members-sign-up
   template: https://zapier.com/apps/hubspot/integrations/memberpress/1598975/update-hubspot-contacts-whenever-new-memberpress-members-sign-up
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-add-new-memberpress-members-as-activecampaign-contacts
@@ -113,6 +120,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/memberpress/1003201/add-new-memberpress-members-as-activecampaign-contacts
   template: https://zapier.com/apps/activecampaign/integrations/memberpress/1003201/add-new-memberpress-members-as-activecampaign-contacts
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-create-new-memberpress-subscriptions-from-new-woocommerce-orders
@@ -127,6 +135,7 @@
   evidence: https://zapier.com/apps/memberpress/integrations/woocommerce/1638788/create-new-memberpress-subscriptions-from-new-woocommerce-orders
   template: https://zapier.com/apps/memberpress/integrations/woocommerce/1638788/create-new-memberpress-subscriptions-from-new-woocommerce-orders
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: memberpress-create-new-hubspot-contacts-from-completed-memberpress-member-signups
@@ -141,297 +150,8 @@
   evidence: https://zapier.com/apps/hubspot/integrations/memberpress/1570969/create-new-hubspot-contacts-from-completed-memberpress-member-signups
   template: https://zapier.com/apps/hubspot/integrations/memberpress/1570969/create-new-hubspot-contacts-from-completed-memberpress-member-signups
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
-  arazzo: null
-- slug: memberpress-samcart
-  label: SamCart
-  partner: samcart
-  partner_name: SamCart
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/samcart
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-teachable
-  label: Teachable
-  partner: teachable
-  partner_name: Teachable
-  category: Online Courses
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/teachable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-plug-pay
-  label: Plug&Pay
-  partner_name: Plug&Pay
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/plug-and-pay
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-lemon-squeezy
-  label: Lemon Squeezy
-  partner: lemon-squeezy
-  partner_name: Lemon Squeezy
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/lemon-squeezy
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-zoom
-  label: Zoom
-  partner: zoom
-  partner_name: Zoom
-  category: Video Conferencing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/zoom
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-mailchimp
-  label: Mailchimp
-  partner: mailchimp
-  partner_name: Mailchimp
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/mailchimp
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-brevo
-  label: Brevo
-  partner: brevo
-  partner_name: Brevo
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/brevo
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-engagebay-marketing
-  label: EngageBay Marketing
-  partner_name: EngageBay Marketing
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/engagebay-marketing
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-flodesk
-  label: Flodesk
-  partner_name: Flodesk
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/flodesk
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-stripe
-  label: Stripe
-  partner: stripe
-  partner_name: Stripe
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/stripe
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-bettermode
-  label: Bettermode
-  partner: bettermode
-  partner_name: Bettermode
-  category: Social Media Accounts
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/bettermode
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-helloasso
-  label: HelloAsso
-  partner_name: HelloAsso
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/helloasso
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-jvzoo
-  label: JVZoo
-  partner_name: JVZoo
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/jvzoo
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-leadconnector
-  label: LeadConnector
-  partner_name: LeadConnector
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/leadconnector
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-facebook-lead-ads-for-business-admins
-  label: Facebook Lead Ads (for Business admins)
-  partner_name: Facebook Lead Ads (for Business admins)
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/facebook-lead-ads-beta
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-facebook-conversions
-  label: Facebook Conversions
-  partner_name: Facebook Conversions
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/facebook-conversions
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-kit
-  label: Kit
-  partner: convertkit
-  partner_name: Kit
-  category: Drip Emails
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/kit
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-salesforce
-  label: Salesforce
-  partner: salesforce
-  partner_name: Salesforce
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/salesforce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/airtable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-new-user-approve
-  label: New User Approve
-  partner_name: New User Approve
-  category: Contact Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/new-user-approve
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: memberpress-discord
-  label: Discord
-  partner: discord
-  partner_name: Discord
-  category: Team Chat
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/discord
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-zoho-sign
-  label: Zoho Sign
-  partner: zoho-sign
-  partner_name: Zoho Sign
-  category: Signatures
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/zoho-sign
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-paystack
-  label: Paystack
-  partner: paystack
-  partner_name: Paystack
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/paystack
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-transistor-fm
-  label: Transistor.fm
-  partner: transistor
-  partner_name: Transistor.fm
-  category: Video & Audio
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/transistorfm
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: memberpress-upviral
-  label: UpViral
-  partner_name: UpViral
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/memberpress/integrations/upviral
-  source: edge
-  status: pending-partner-spec
   arazzo: null
 - slug: memberpress-zapier
   label: Zapier
@@ -457,4 +177,321 @@
     beta: false
     builder: unknown (not in the directory record)
   status: not-a-workflow
+  arazzo: null
+- slug: memberpress-samcart
+  label: SamCart
+  partner: samcart
+  partner_name: SamCart
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/samcart
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-teachable
+  label: Teachable
+  partner: teachable
+  partner_name: Teachable
+  category: Online Courses
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/teachable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-plug-pay
+  label: Plug&Pay
+  partner_name: Plug&Pay
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/plug-and-pay
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-lemon-squeezy
+  label: Lemon Squeezy
+  partner: lemon-squeezy
+  partner_name: Lemon Squeezy
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/lemon-squeezy
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-zoom
+  label: Zoom
+  partner: zoom
+  partner_name: Zoom
+  category: Video Conferencing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/zoom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-mailchimp
+  label: Mailchimp
+  partner: mailchimp
+  partner_name: Mailchimp
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/mailchimp
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-brevo
+  label: Brevo
+  partner: brevo
+  partner_name: Brevo
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/brevo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-flodesk
+  label: Flodesk
+  partner_name: Flodesk
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/flodesk
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-engagebay-marketing
+  label: EngageBay Marketing
+  partner_name: EngageBay Marketing
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/engagebay-marketing
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-stripe
+  label: Stripe
+  partner: stripe
+  partner_name: Stripe
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/stripe
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-bettermode
+  label: Bettermode
+  partner: bettermode
+  partner_name: Bettermode
+  category: Social Media Accounts
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/bettermode
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-helloasso
+  label: HelloAsso
+  partner_name: HelloAsso
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/helloasso
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-jvzoo
+  label: JVZoo
+  partner_name: JVZoo
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/jvzoo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-leadconnector
+  label: LeadConnector
+  partner_name: LeadConnector
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/leadconnector
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-facebook-lead-ads-for-business-admins
+  label: Facebook Lead Ads (for Business admins)
+  partner: facebook-lead-ads
+  partner_name: Facebook Lead Ads (for Business admins)
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/facebook-lead-ads-beta
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-facebook-conversions
+  label: Facebook Conversions
+  partner: facebook
+  partner_name: Facebook Conversions
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/facebook-conversions
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-kit
+  label: Kit
+  partner: convertkit
+  partner_name: Kit
+  category: Drip Emails
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/kit
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-salesforce
+  label: Salesforce
+  partner: salesforce
+  partner_name: Salesforce
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/salesforce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-new-user-approve
+  label: New User Approve
+  partner_name: New User Approve
+  category: Contact Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/new-user-approve
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: memberpress-discord
+  label: Discord
+  partner: discord
+  partner_name: Discord
+  category: Team Chat
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/discord
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-zoho-sign
+  label: Zoho Sign
+  partner: zoho-sign
+  partner_name: Zoho Sign
+  category: Signatures
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/zoho-sign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-paystack
+  label: Paystack
+  partner: paystack
+  partner_name: Paystack
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/paystack
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-transistor-fm
+  label: Transistor.fm
+  partner: transistor
+  partner_name: Transistor.fm
+  category: Video & Audio
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/transistorfm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: memberpress-upviral
+  label: UpViral
+  partner_name: UpViral
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/memberpress/integrations/upviral
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
   arazzo: null
