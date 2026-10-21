@@ -8,6 +8,13 @@ checked:
 - https://n8n.io/integrations/memberpress/
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/memberpress/integrations
+- https://docs.stripe.com/stripe-apps
+- https://docs.stripe.com/stripe-apps/review-requirements
+- https://marketplace.stripe.com/
+- https://marketplace.stripe.com/appm/apps
+- https://stripe.com/partners/directory
+- https://stripe.com/partners/verified-partners
+- https://stripe.partners/sitemap.xml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -453,6 +460,36 @@ edges:
   direction: third-party
   category: Ads & Conversion
   partner_url: http://upviral.com/
+- partner_name: Stripe Partner Ecosystem
+  partner: stripe
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://stripe.partners/directory/memberpress
+  category: Stripe ecosystem partner
+  contract_reference:
+    register: Stripe Partner Ecosystem directory (stripe.com/partners/directory -> stripe.partners, PartnerPage
+      SSR __NUXT_DATA__)
+    standard: Stripe Partner Ecosystem
+    spec_file: null
+    role: stripe-partner
+    registered_name: MemberPress
+    register_id: memberpress
+    partner_tier: null
+    matched_domain: memberpress.com
+    matched_by: domain
+    identity_source: the directory's own website field for the partner (no lookup)
+    signal_note: 'participation only: directory listing (verification tier, if any, in partner_tier)'
+    context:
+      callouts:
+      - Websites
+      location: Cedar City, United States
+    detected_by: sweep-stripe-app-marketplace.py
+    detected: '2026-10-21'
+  detected_by: sweep-stripe-app-marketplace.py
+  first_seen: '2026-10-21'
 templates:
 - title: Add new MemberPress members as MailerLite subscribers
   url: https://zapier.com/apps/mailerlite/integrations/memberpress/1086384/add-new-memberpress-members-as-mailerlite-subscribers
